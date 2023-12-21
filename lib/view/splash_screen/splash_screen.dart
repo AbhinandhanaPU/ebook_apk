@@ -1,4 +1,4 @@
-import 'package:ebook_apk/view/register_screen/register_screen.dart';
+import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

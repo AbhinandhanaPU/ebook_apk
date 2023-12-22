@@ -1,28 +1,20 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
-
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  TextEditingController userSignController = TextEditingController();
-  TextEditingController mailSignController = TextEditingController();
-  TextEditingController passSignController = TextEditingController();
-  TextEditingController confirmSignController = TextEditingController();
-  final OutlineInputBorder enabledBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(width: 1.5, color: ColorConstant.themeColor));
-  final OutlineInputBorder focusedBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(width: 2.5, color: ColorConstant.themeColor));
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController userLoginController = TextEditingController();
+    TextEditingController passLoginController = TextEditingController();
+    final OutlineInputBorder enabledBorder = OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(width: 1.5, color: ColorConstant.themeColor));
+    final OutlineInputBorder focusedBorder = OutlineInputBorder(
+        borderRadius: BorderRadius.circular(15),
+        borderSide: BorderSide(width: 2.5, color: ColorConstant.themeColor));
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -33,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             children: [
               SizedBox(height: 80),
               Text(
-                "Let's get Started!",
+                "Welcome Back!",
                 style: TextStyle(
                     color: ColorConstant.themeColor,
                     fontSize: 28,
@@ -47,9 +39,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 80),
               TextField(
-                controller: userSignController,
+                controller: userLoginController,
                 decoration: InputDecoration(
                     labelText: "User Name",
                     labelStyle: TextStyle(color: ColorConstant.themeColor),
@@ -58,33 +50,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     enabledBorder: enabledBorder,
                     focusedBorder: focusedBorder),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               TextField(
-                controller: mailSignController,
-                decoration: InputDecoration(
-                    labelText: "Email ID",
-                    labelStyle: TextStyle(color: ColorConstant.themeColor),
-                    prefixIcon:
-                        Icon(Icons.email, color: ColorConstant.iconGrey),
-                    enabledBorder: enabledBorder,
-                    focusedBorder: focusedBorder),
-              ),
-              SizedBox(height: 30),
-              TextField(
-                controller: passSignController,
+                controller: passLoginController,
                 decoration: InputDecoration(
                     labelText: "Password",
-                    labelStyle: TextStyle(color: ColorConstant.themeColor),
-                    prefixIcon:
-                        Icon(Icons.lock_open, color: ColorConstant.iconGrey),
-                    enabledBorder: enabledBorder,
-                    focusedBorder: focusedBorder),
-              ),
-              SizedBox(height: 30),
-              TextField(
-                controller: confirmSignController,
-                decoration: InputDecoration(
-                    labelText: "Confirm Password",
                     labelStyle: TextStyle(color: ColorConstant.themeColor),
                     prefixIcon:
                         Icon(Icons.lock_open, color: ColorConstant.iconGrey),
@@ -95,11 +65,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => LoginScreen(),
+                      //     ));
                     },
                     style: ButtonStyle(
                         backgroundColor:
@@ -117,7 +87,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: ColorConstant.mainWhite),
                     )),
               ),
-              SizedBox(height: 60),
+              SizedBox(height: 200),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -128,11 +98,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => LoginScreen(),
+                        //     ));
                       },
                       child: Text(
                         " Login Here",

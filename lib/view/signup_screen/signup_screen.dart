@@ -2,14 +2,14 @@ import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController userSignController = TextEditingController();
   TextEditingController mailSignController = TextEditingController();
   TextEditingController passSignController = TextEditingController();

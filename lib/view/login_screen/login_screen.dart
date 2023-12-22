@@ -1,4 +1,6 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/view/option_screen/option_screen.dart';
+import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -33,7 +35,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 15),
               Text(
-                "Create An Account To Get All Features",
+                "Login Into Your Existing Account",
                 style: TextStyle(
                     color: ColorConstant.mainBlack,
                     fontSize: 16,
@@ -58,6 +60,13 @@ class LoginScreen extends StatelessWidget {
                     labelStyle: TextStyle(color: ColorConstant.themeColor),
                     prefixIcon:
                         Icon(Icons.lock_open, color: ColorConstant.iconGrey),
+                    counter: Text(
+                      "Forgot Password ?",
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: ColorConstant.themeColor),
+                    ),
                     enabledBorder: enabledBorder,
                     focusedBorder: focusedBorder),
               ),
@@ -65,11 +74,11 @@ class LoginScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => LoginScreen(),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OptionScreen(),
+                          ));
                     },
                     style: ButtonStyle(
                         backgroundColor:
@@ -80,32 +89,32 @@ class LoginScreen extends StatelessWidget {
                         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)))),
                     child: Text(
-                      "CREATE",
+                      "LOGIN",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: ColorConstant.mainWhite),
                     )),
               ),
-              SizedBox(height: 200),
+              SizedBox(height: 170),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Already have an account? ",
+                    "Don’t have an account?  ",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   TextButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => LoginScreen(),
-                        //     ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpScreen(),
+                            ));
                       },
                       child: Text(
-                        " Login Here",
+                        "Sign Up",
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w900,

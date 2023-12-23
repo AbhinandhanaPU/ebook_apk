@@ -16,7 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController confirmSignController = TextEditingController();
   final OutlineInputBorder enabledBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(width: 1.5, color: ColorConstant.themeColor));
+      borderSide: BorderSide(width: 1.5, color: ColorConstant.iconGrey));
   final OutlineInputBorder focusedBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: BorderSide(width: 2.5, color: ColorConstant.themeColor));
@@ -51,8 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextField(
                 controller: userSignController,
                 decoration: InputDecoration(
-                    labelText: "User Name",
-                    labelStyle: TextStyle(color: ColorConstant.themeColor),
+                    hintText: "User Name",
                     prefixIcon:
                         Icon(Icons.person, color: ColorConstant.iconGrey),
                     enabledBorder: enabledBorder,
@@ -62,8 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextField(
                 controller: mailSignController,
                 decoration: InputDecoration(
-                    labelText: "Email ID",
-                    labelStyle: TextStyle(color: ColorConstant.themeColor),
+                    hintText: "Email ID",
                     prefixIcon:
                         Icon(Icons.email, color: ColorConstant.iconGrey),
                     enabledBorder: enabledBorder,
@@ -73,8 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextField(
                 controller: passSignController,
                 decoration: InputDecoration(
-                    labelText: "Password",
-                    labelStyle: TextStyle(color: ColorConstant.themeColor),
+                    hintText: "Password",
                     prefixIcon:
                         Icon(Icons.lock_open, color: ColorConstant.iconGrey),
                     enabledBorder: enabledBorder,
@@ -84,8 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               TextField(
                 controller: confirmSignController,
                 decoration: InputDecoration(
-                    labelText: "Confirm Password",
-                    labelStyle: TextStyle(color: ColorConstant.themeColor),
+                    hintText: "Confirm Password",
                     prefixIcon:
                         Icon(Icons.lock_open, color: ColorConstant.iconGrey),
                     enabledBorder: enabledBorder,

@@ -16,9 +16,10 @@ class IntroWidget3 extends StatelessWidget {
         children: [
           SizedBox(height: 20),
           Text(
-            "download your Favorite books ,you can enjoy your book without any worries",
+            """Download your Favorite books ,
+you can enjoy your books without any worries""",
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 21,
               fontWeight: FontWeight.w400,
               // color: ColorConstant.mainBlack,
             ),

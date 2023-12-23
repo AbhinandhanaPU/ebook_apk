@@ -82,8 +82,8 @@ class LoginScreen extends StatelessWidget {
                         backgroundColor:
                             MaterialStatePropertyAll(ColorConstant.themeColor),
                         elevation: MaterialStatePropertyAll(10),
-                        padding: MaterialStatePropertyAll(
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 11)),
+                        padding: MaterialStatePropertyAll(EdgeInsets.symmetric(
+                            horizontal: 150, vertical: 11)),
                         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)))),
                     child: Text(

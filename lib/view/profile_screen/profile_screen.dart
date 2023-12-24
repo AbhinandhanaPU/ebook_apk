@@ -26,6 +26,10 @@ class ProfileScreen extends StatelessWidget {
                   backgroundColor: ColorConstant.themeColor,
                   foregroundColor: ColorConstant.mainWhite,
                   radius: 50,
+                  child: Text(
+                    "U",
+                    style: TextStyle(fontSize: 50),
+                  ),
                 ),
                 SizedBox(width: 30),
                 Column(

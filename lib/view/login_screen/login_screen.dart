@@ -72,11 +72,12 @@ class LoginScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                             builder: (context) => BottomNavScreen(),
-                          ));
+                          ),
+                          (route) => false);
                     },
                     style: ButtonStyle(
                         backgroundColor:

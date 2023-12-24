@@ -1,8 +1,8 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/bottomnav_screen/tab_screens/home_screen.dart';
-import 'package:ebook_apk/view/bottomnav_screen/tab_screens/liabrary_screen.dart';
-import 'package:ebook_apk/view/bottomnav_screen/tab_screens/profile_screen.dart';
-import 'package:ebook_apk/view/bottomnav_screen/tab_screens/search_screen.dart';
+import 'package:ebook_apk/view/home_screen/home_screen.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/liabrary_screen.dart';
+import 'package:ebook_apk/view/profile_screen/profile_screen.dart';
+import 'package:ebook_apk/view/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavScreen extends StatefulWidget {

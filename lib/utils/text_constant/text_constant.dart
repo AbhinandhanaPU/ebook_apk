@@ -1,4 +1,4 @@
-class textContant {
+class textConstant {
   static List Langconst = [
     "Malayalam",
     "English",

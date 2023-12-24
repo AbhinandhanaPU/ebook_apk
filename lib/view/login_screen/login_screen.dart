@@ -1,5 +1,5 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/option_screen/option_screen.dart';
+import 'package:ebook_apk/view/bottomnav_screen/bottomnav_screen.dart';
 import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => OptionScreen(),
+                            builder: (context) => BottomNavScreen(),
                           ));
                     },
                     style: ButtonStyle(

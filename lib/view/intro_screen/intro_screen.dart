@@ -3,7 +3,6 @@ import 'package:ebook_apk/view/intro_screen/intro_widget1.dart';
 import 'package:ebook_apk/view/intro_screen/intro_widget2.dart';
 import 'package:ebook_apk/view/intro_screen/intro_widget3.dart';
 import 'package:ebook_apk/view/signup_login/signup_login.dart';
-import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class IntroScreen extends StatefulWidget {

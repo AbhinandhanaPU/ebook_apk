@@ -1,5 +1,7 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/view/option_screen/option_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -7,7 +9,9 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle profileStyle =
-        TextStyle(fontSize: 22, fontWeight: FontWeight.bold);
+        TextStyle(fontSize: 22, fontWeight: FontWeight.w500);
+    final TextStyle themeStyle =
+        TextStyle(fontSize: 18, color: ColorConstant.mainBlack);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,24 +52,130 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Settings",
-                  style: profileStyle,
+                Row(
+                  children: [
+                    Icon(Icons.settings),
+                    SizedBox(width: 35),
+                    Text(
+                      "Settings",
+                      style: profileStyle,
+                    ),
+                  ],
                 ),
                 SizedBox(height: 30),
-                Text(
-                  "Preferences",
-                  style: profileStyle,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OptionScreen(),
+                        ));
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.tune),
+                      SizedBox(width: 35),
+                      Text(
+                        "Preferences",
+                        style: profileStyle,
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 30),
-                Text(
-                  "Theme",
-                  style: profileStyle,
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                          actionsAlignment: MainAxisAlignment.start,
+                          actionsPadding: EdgeInsets.all(20),
+                          alignment: Alignment.center,
+                          actions: [
+                            Column(
+                              children: [
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "System Default",
+                                      style: themeStyle,
+                                    )),
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Light",
+                                      style: themeStyle,
+                                    )),
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      "Dark",
+                                      style: themeStyle,
+                                    )),
+                              ],
+                            )
+                          ]),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.contrast),
+                      SizedBox(width: 35),
+                      Text(
+                        "Theme",
+                        style: profileStyle,
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 30),
-                Text(
-                  "Logout",
-                  style: profileStyle,
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text(
+                          "Do you want to Log out?",
+                          style: TextStyle(fontSize: 22),
+                        ),
+                        actions: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                        color: ColorConstant.themeColor),
+                                  )),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    SystemNavigator.pop();
+                                  },
+                                  child: Text(
+                                    "Logout",
+                                    style: TextStyle(
+                                        color: ColorConstant.themeColor),
+                                  )),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout),
+                      SizedBox(width: 35),
+                      Text(
+                        "Logout",
+                        style: profileStyle,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -2,8 +2,8 @@ import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:flutter/material.dart';
 
-class BookCardRefactor extends StatelessWidget {
-  BookCardRefactor({
+class BookListVertical extends StatelessWidget {
+  BookListVertical({
     super.key,
     required this.title,
   });
@@ -12,7 +12,7 @@ class BookCardRefactor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20, left: 22),
+      padding: EdgeInsets.only(top: 22, left: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -22,13 +22,12 @@ class BookCardRefactor extends StatelessWidget {
           ),
           SizedBox(height: 10),
           SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
+            child: Column(
               children: List.generate(
                 10,
                 (index) => Padding(
-                  padding: const EdgeInsets.only(right: 15, left: 1, top: 1),
-                  child: Column(
+                  padding: const EdgeInsets.only(bottom: 15, left: 1, top: 1),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
@@ -46,15 +45,21 @@ class BookCardRefactor extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Text(
-                        "Title",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "Author",
-                        style: TextStyle(fontSize: 17),
+                      SizedBox(width: 20),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Title",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Author",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ],
                       )
                     ],
                   ),

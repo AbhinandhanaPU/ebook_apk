@@ -1,5 +1,5 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/home_screen/bookcard_refactor.dart';
+import 'package:ebook_apk/view/home_screen/booklist_horiz.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,9 +23,9 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BookCardRefactor(title: "Latest Release"),
-            BookCardRefactor(title: "Novels"),
-            BookCardRefactor(title: "Fiction"),
+            BookListHoriz(title: "Latest Release"),
+            BookListHoriz(title: "Novels"),
+            BookListHoriz(title: "Fiction"),
           ],
         ),
       ),

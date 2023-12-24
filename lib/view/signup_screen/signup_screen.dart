@@ -98,13 +98,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ));
                     },
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStatePropertyAll(ColorConstant.themeColor),
-                        elevation: MaterialStatePropertyAll(10),
-                        padding: MaterialStatePropertyAll(
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 11)),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)))),
+                      backgroundColor:
+                          MaterialStatePropertyAll(ColorConstant.themeColor),
+                      elevation: MaterialStatePropertyAll(10),
+                      padding: MaterialStatePropertyAll(
+                          EdgeInsets.symmetric(horizontal: 25, vertical: 11)),
+                      shape: MaterialStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
                     child: Text(
                       "CREATE",
                       style: TextStyle(

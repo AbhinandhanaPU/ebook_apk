@@ -1,3 +1,4 @@
+import 'package:ebook_apk/view/bottomnav_screen/bottomnav_screen.dart';
 import 'package:ebook_apk/view/intro_screen/intro_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
         .then((value) => Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => IntroScreen(),
+              builder: (context) => BottomNavScreen(),
             ),
             (route) => false));
     super.initState();

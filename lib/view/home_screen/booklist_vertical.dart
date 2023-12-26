@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 class BookListVertical extends StatelessWidget {
   BookListVertical({
     super.key,
-    required this.title,
+    this.title = '',
   });
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 22, left: 12),
+      padding: EdgeInsets.only(left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,14 +47,15 @@ class BookListVertical extends StatelessWidget {
                       ),
                       SizedBox(width: 20),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(height: 10),
                           Text(
                             "Title",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
+                          SizedBox(height: 10),
                           Text(
                             "Author",
                             style: TextStyle(fontSize: 17),

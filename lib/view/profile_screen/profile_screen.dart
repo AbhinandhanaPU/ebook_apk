@@ -9,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle profileStyle =
-        TextStyle(fontSize: 22, fontWeight: FontWeight.w500);
+        TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
     final TextStyle themeStyle =
         TextStyle(fontSize: 18, color: ColorConstant.mainBlack);
     return Scaffold(
@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
                 CircleAvatar(
                   backgroundColor: ColorConstant.themeColor,
                   foregroundColor: ColorConstant.mainWhite,
-                  radius: 50,
+                  radius: 45,
                   child: Text(
                     "U",
                     style: TextStyle(fontSize: 50),
@@ -52,13 +52,13 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Icon(Icons.settings),
+                    Icon(Icons.settings, size: 22),
                     SizedBox(width: 35),
                     Text(
                       "Settings",
@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.tune),
+                      Icon(Icons.tune, size: 22),
                       SizedBox(width: 35),
                       Text(
                         "Preferences",
@@ -123,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.contrast),
+                      Icon(Icons.contrast, size: 22),
                       SizedBox(width: 35),
                       Text(
                         "Theme",
@@ -172,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      Icon(Icons.logout),
+                      Icon(Icons.logout, size: 22),
                       SizedBox(width: 35),
                       Text(
                         "Logout",

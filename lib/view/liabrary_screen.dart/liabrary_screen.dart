@@ -11,7 +11,7 @@ class LiabraryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      initialIndex: 2,
+      initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Your Liabrary"),

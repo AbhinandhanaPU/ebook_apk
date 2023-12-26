@@ -1,5 +1,7 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_vertical.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/notes_tab.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/shelf_tab.dart';
 import 'package:flutter/material.dart';
 
 class LiabraryScreen extends StatelessWidget {
@@ -32,24 +34,8 @@ class LiabraryScreen extends StatelessWidget {
         ),
         body: TabBarView(children: [
           SingleChildScrollView(child: BookListVertical()),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return Container(
-                color: ColorConstant.activegrey,
-                width: 50,
-              );
-            },
-          ),
-          ListView.builder(
-            itemBuilder: (context, index) {
-              return Container(
-                color: ColorConstant.activegrey,
-                width: 50,
-              );
-            },
-          )
+          ShelfScreen(),
+          NotesTab()
         ]),
       ),
     );

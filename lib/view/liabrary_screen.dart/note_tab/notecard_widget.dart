@@ -1,5 +1,5 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/liabrary_screen.dart/note_detail.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/note_tab/note_detail.dart';
 import 'package:flutter/material.dart';
 
 class noteCardWidget extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_vertical.dart';
-import 'package:ebook_apk/view/liabrary_screen.dart/notes_tab.dart';
-import 'package:ebook_apk/view/liabrary_screen.dart/shelf_tab.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/note_tab/notes_tab.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/shelf_tab/shelf_tab.dart';
 import 'package:flutter/material.dart';
 
 class LiabraryScreen extends StatelessWidget {

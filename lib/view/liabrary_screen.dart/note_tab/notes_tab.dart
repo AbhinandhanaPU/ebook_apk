@@ -1,4 +1,4 @@
-import 'package:ebook_apk/view/liabrary_screen.dart/notecard_widget.dart';
+import 'package:ebook_apk/view/liabrary_screen.dart/note_tab/notecard_widget.dart';
 import 'package:flutter/material.dart';
 
 class NotesTab extends StatelessWidget {

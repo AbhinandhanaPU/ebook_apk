@@ -12,21 +12,28 @@ class BookListVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Text(
+              title,
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(height: 10),
-          SingleChildScrollView(
-            child: Column(
-              children: List.generate(
-                10,
-                (index) => Padding(
-                  padding: const EdgeInsets.only(bottom: 15, left: 1, top: 1),
+          Column(
+            children: List.generate(
+              10,
+              (index) => Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 15, left: 10, right: 10, top: 1),
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      color: ColorConstant.inActiveGrey,
+                      borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -34,6 +41,7 @@ class BookListVertical extends StatelessWidget {
                         width: 100,
                         height: 150,
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                               color: ColorConstant.mainBlack,
                               strokeAlign: BorderSide.strokeAlignOutside),

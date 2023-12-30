@@ -47,10 +47,16 @@ class BookListHoriz extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      Text(
-                        "Title",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      Row(
+                        children: [
+                          Text(
+                            "Title",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(width: 40),
+                          Icon(Icons.more_vert)
+                        ],
                       ),
                       Text(
                         "Author",

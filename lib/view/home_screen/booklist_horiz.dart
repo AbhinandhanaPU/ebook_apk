@@ -1,23 +1,26 @@
+import 'package:ebook_apk/controller/book_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BookListHoriz extends StatelessWidget {
   BookListHoriz({
     super.key,
-    required this.title,
+    required this.headings,
   });
-  final String title;
+  final String headings;
 
   @override
   Widget build(BuildContext context) {
+    final newestController = Provider.of<NewestBookController>(context);
     return Container(
       padding: EdgeInsets.only(top: 22, left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title,
+            headings,
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),
@@ -25,23 +28,27 @@ class BookListHoriz extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Row(
               children: List.generate(
-                10,
+                newestController.apiResModel?.items?.length ?? 0,
                 (index) => Padding(
                   padding: const EdgeInsets.only(right: 15, left: 1, top: 1),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: 100,
-                        height: 150,
+                        width: 120,
+                        height: 160,
                         decoration: BoxDecoration(
-                          border: Border.all(
-                              color: ColorConstant.mainBlack,
-                              strokeAlign: BorderSide.strokeAlignOutside),
+                          // border: Border.all(
+                          //     color: ColorConstant.mainBlack,
+                          //     strokeAlign: BorderSide.strokeAlignOutside),
                           image: DecorationImage(
-                            image: AssetImage(
-                              ImageConstant.intro1,
-                            ),
+                            image: NetworkImage(newestController
+                                    .apiResModel
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.smallThumbnail ??
+                                ""),
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -49,19 +56,25 @@ class BookListHoriz extends StatelessWidget {
                       SizedBox(height: 10),
                       Row(
                         children: [
-                          Text(
-                            "Title",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 95,
+                            child: Text(
+                              newestController.apiResModel?.items?[index]
+                                      .volumeInfo?.title
+                                      .toString() ??
+                                  "",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
                           ),
-                          SizedBox(width: 40),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Icon(Icons.more_vert)
                         ],
                       ),
-                      Text(
-                        "Author",
-                        style: TextStyle(fontSize: 17),
-                      )
                     ],
                   ),
                 ),

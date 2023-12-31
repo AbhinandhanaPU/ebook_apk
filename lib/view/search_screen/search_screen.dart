@@ -8,11 +8,11 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(top: 40, left: 10, right: 10),
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Row(
+      body: SingleChildScrollView(
+        child: Column(children: [
+          Padding(
+            padding: EdgeInsets.only(top: 40, left: 10, right: 10),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
@@ -56,10 +56,10 @@ class SearchScreen extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 20),
-            BookListVertical(title: "books on your preferences")
-          ]),
-        ),
+          ),
+          SizedBox(height: 20),
+          BookListVertical(title: "books on your preferences")
+        ]),
       ),
     );
   }

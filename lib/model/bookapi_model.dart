@@ -24,8 +24,8 @@ class Item {
   String? etag;
   String? selfLink;
   VolumeInfo? volumeInfo;
-  SaleInfo? saleInfo;
   AccessInfo? accessInfo;
+  SearchInfo? searchInfo;
 
   Item({
     this.kind,
@@ -33,8 +33,8 @@ class Item {
     this.etag,
     this.selfLink,
     this.volumeInfo,
-    this.saleInfo,
     this.accessInfo,
+    this.searchInfo,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
@@ -45,12 +45,12 @@ class Item {
         volumeInfo: json["volumeInfo"] == null
             ? null
             : VolumeInfo.fromJson(json["volumeInfo"]),
-        saleInfo: json["saleInfo"] == null
-            ? null
-            : SaleInfo.fromJson(json["saleInfo"]),
         accessInfo: json["accessInfo"] == null
             ? null
             : AccessInfo.fromJson(json["accessInfo"]),
+        searchInfo: json["searchInfo"] == null
+            ? null
+            : SearchInfo.fromJson(json["searchInfo"]),
       );
 }
 
@@ -105,47 +105,20 @@ class Epub {
       );
 }
 
-class SaleInfo {
-  String? country;
-  String? saleability;
-  bool? isEbook;
-  Price? listPrice;
-  Price? retailPrice;
+class SearchInfo {
+  String? textSnippet;
 
-  SaleInfo({
-    this.country,
-    this.saleability,
-    this.isEbook,
-    this.listPrice,
-    this.retailPrice,
+  SearchInfo({
+    this.textSnippet,
   });
 
-  factory SaleInfo.fromJson(Map<String, dynamic> json) => SaleInfo(
-        country: json["country"],
-        saleability: json["saleability"],
-        isEbook: json["isEbook"],
-        listPrice: json["listPrice"] == null
-            ? null
-            : Price.fromJson(json["listPrice"]),
-        retailPrice: json["retailPrice"] == null
-            ? null
-            : Price.fromJson(json["retailPrice"]),
+  factory SearchInfo.fromJson(Map<String, dynamic> json) => SearchInfo(
+        textSnippet: json["textSnippet"],
       );
-}
 
-class Price {
-  double? amount;
-  String? currencyCode;
-
-  Price({
-    this.amount,
-    this.currencyCode,
-  });
-
-  factory Price.fromJson(Map<String, dynamic> json) => Price(
-        amount: json["amount"]?.toDouble(),
-        currencyCode: json["currencyCode"],
-      );
+  Map<String, dynamic> toJson() => {
+        "textSnippet": textSnippet,
+      };
 }
 
 class VolumeInfo {

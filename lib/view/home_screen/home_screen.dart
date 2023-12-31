@@ -1,9 +1,26 @@
+import 'package:ebook_apk/controller/book_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_horiz.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    await Provider.of<NewestBookController>(context, listen: false).fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +40,9 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            BookListHoriz(title: "Latest Release"),
-            BookListHoriz(title: "Novels"),
-            BookListHoriz(title: "Fiction"),
+            BookListHoriz(headings: "Latest Release"),
+            // BookListHoriz(headings: "Novels"),
+            // BookListHoriz(headings: "Fiction"),
           ],
         ),
       ),

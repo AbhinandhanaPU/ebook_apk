@@ -31,12 +31,12 @@ class BookListVertical extends StatelessWidget {
             children: List.generate(
               10,
               (index) => Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 8, left: 8, right: 8, top: 1),
+                padding: const EdgeInsets.only(
+                    bottom: 8, left: 10, right: 8, top: 1),
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: ColorConstant.inActiveGrey,
+                      // color: Colors.amber,
                       borderRadius: BorderRadius.circular(20)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,13 +46,14 @@ class BookListVertical extends StatelessWidget {
                         height: 150,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                              color: ColorConstant.mainBlack,
-                              strokeAlign: BorderSide.strokeAlignOutside),
                           image: DecorationImage(
-                            image: AssetImage(
-                              ImageConstant.intro1,
-                            ),
+                            image: NetworkImage(newestController
+                                    .apiResModel
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.smallThumbnail ??
+                                ""),
                             fit: BoxFit.fill,
                           ),
                         ),

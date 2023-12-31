@@ -1,12 +1,15 @@
+import 'package:ebook_apk/controller/search_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_vertical.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController searchFormController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(children: [
@@ -19,6 +22,7 @@ class SearchScreen extends StatelessWidget {
                   width: 250,
                   height: 50,
                   child: TextField(
+                    controller: searchFormController,
                     textDirection: TextDirection.ltr,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
@@ -32,9 +36,14 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Provider.of<BookSearchController>(context, listen: false)
+                        .fetchSearchData(
+                            searchItem:
+                                searchFormController.text.toLowerCase());
+                  },
                   child: Text(
-                    "SEACRH",
+                    "SEARCH",
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

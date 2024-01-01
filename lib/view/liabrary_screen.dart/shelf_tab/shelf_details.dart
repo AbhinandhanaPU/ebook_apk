@@ -1,4 +1,3 @@
-import 'package:ebook_apk/view/home_screen/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 
 class ShelfDetails extends StatelessWidget {
@@ -13,7 +12,7 @@ class ShelfDetails extends StatelessWidget {
           IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_outlined))
         ],
       ),
-      body: SingleChildScrollView(child: BookListVertical()),
+      // body: SingleChildScrollView(child: BookListVertical()),
     );
   }
 }

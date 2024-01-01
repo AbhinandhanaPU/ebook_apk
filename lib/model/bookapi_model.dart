@@ -126,7 +126,7 @@ class VolumeInfo {
   String? subtitle;
   List<String>? authors;
   String? publisher;
-  DateTime? publishedDate;
+  String? publishedDate;
   String? description;
   List<IndustryIdentifier>? industryIdentifiers;
   ReadingModes? readingModes;
@@ -173,9 +173,10 @@ class VolumeInfo {
             ? []
             : List<String>.from(json["authors"]!.map((x) => x)),
         publisher: json["publisher"],
-        publishedDate: json["publishedDate"] == null
-            ? null
-            : DateTime.parse(json["publishedDate"]),
+        publishedDate: json["publishedDate"],
+        //  == null
+        //     ? null
+        //     : DateTime.parse(json["publishedDate"]),
         description: json["description"],
         industryIdentifiers: json["industryIdentifiers"] == null
             ? []

@@ -17,7 +17,7 @@ class BookCategoryController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final urlFantacy = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:fantasy&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+      "https://www.googleapis.com/books/v1/volumes?q=subject:fantasy&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
     final responseFantacy = await http.get(urlFantacy);
     print(responseFantacy.statusCode);
@@ -36,7 +36,7 @@ class BookCategoryController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final urlThiriller = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:thriller&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+      "https://www.googleapis.com/books/v1/volumes?q=subject:thriller&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
     final responseThiriller = await http.get(urlThiriller);
     print(responseThiriller.statusCode);
@@ -55,7 +55,7 @@ class BookCategoryController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final urlAdventure = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:adventure&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+      "https://www.googleapis.com/books/v1/volumes?q=subject:adventure&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
     final responseAdventure = await http.get(urlAdventure);
     print(responseAdventure.statusCode);
@@ -74,7 +74,7 @@ class BookCategoryController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final urlRomance = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:romance&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+      "https://www.googleapis.com/books/v1/volumes?q=subject:romance&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
     final responseRomance = await http.get(urlRomance);
     print(responseRomance.statusCode);
@@ -93,7 +93,7 @@ class BookCategoryController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final urlRomance = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:Romance&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+      "https://www.googleapis.com/books/v1/volumes?q=subject:Romance&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
     final responseRomance = await http.get(urlRomance);
     print(responseRomance.statusCode);

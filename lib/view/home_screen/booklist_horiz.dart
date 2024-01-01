@@ -1,3 +1,4 @@
+import 'package:ebook_apk/view/global_widgets/book_details.dart';
 import 'package:flutter/material.dart';
 
 class BookListHoriz extends StatelessWidget {
@@ -14,6 +15,14 @@ class BookListHoriz extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 15, bottom: 30),
       child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BookDetails(),
+            ),
+          );
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

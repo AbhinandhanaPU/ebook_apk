@@ -13,7 +13,7 @@ class BookSearchController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final url = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=$searchItem&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+      "https://www.googleapis.com/books/v1/volumes?q=$searchItem&maxResults=40&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
     final response = await http.get(url);
     print(response.statusCode);

@@ -1,6 +1,6 @@
 import 'package:ebook_apk/controller/search_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/home_screen/booklist_vertical.dart';
+import 'package:ebook_apk/view/global_widgets/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

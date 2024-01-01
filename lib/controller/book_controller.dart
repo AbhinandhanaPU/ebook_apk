@@ -13,7 +13,7 @@ class NewestBookController with ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final url = Uri.parse(
-        "https://www.googleapis.com/books/v1/volumes?q=download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA");
+        "https://www.googleapis.com/books/v1/volumes?q=maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA");
     final response = await http.get(url);
     print(response.statusCode);
     if (response.statusCode == 200) {

@@ -19,8 +19,8 @@ class LiabraryScreen extends StatelessWidget {
           elevation: 3,
           bottom: TabBar(
             tabs: [
-              Tab(text: "Your books"),
-              Tab(text: "Shelfes"),
+              Tab(text: "My Readings"),
+              Tab(text: "My Bookshelf"),
               Tab(text: "Notes")
             ],
             indicatorSize: TabBarIndicatorSize.tab,

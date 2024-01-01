@@ -6,7 +6,11 @@ import 'package:http/http.dart' as http;
 
 class BookCategoryController with ChangeNotifier {
   Map<String, dynamic> decodedData = {};
-  BookApiModel? apiResModel;
+  BookApiModel? apiResModelFantacy;
+  BookApiModel? apiResModelThriller;
+  BookApiModel? apiResModelAdventure;
+  BookApiModel? apiResModelHorror;
+  BookApiModel? apiResModelRom;
   bool isLoading = false;
 
   Future fetchFantacyData() async {
@@ -19,7 +23,7 @@ class BookCategoryController with ChangeNotifier {
     print(responseFantacy.statusCode);
     if (responseFantacy.statusCode == 200) {
       decodedData = jsonDecode(responseFantacy.body);
-      apiResModel = BookApiModel.fromJson(decodedData);
+      apiResModelFantacy = BookApiModel.fromJson(decodedData);
     } else {
       print("api failed");
     }
@@ -38,7 +42,7 @@ class BookCategoryController with ChangeNotifier {
     print(responseThiriller.statusCode);
     if (responseThiriller.statusCode == 200) {
       decodedData = jsonDecode(responseThiriller.body);
-      apiResModel = BookApiModel.fromJson(decodedData);
+      apiResModelThriller = BookApiModel.fromJson(decodedData);
     } else {
       print("api failed");
     }
@@ -57,7 +61,7 @@ class BookCategoryController with ChangeNotifier {
     print(responseAdventure.statusCode);
     if (responseAdventure.statusCode == 200) {
       decodedData = jsonDecode(responseAdventure.body);
-      apiResModel = BookApiModel.fromJson(decodedData);
+      apiResModelAdventure = BookApiModel.fromJson(decodedData);
     } else {
       print("api failed");
     }
@@ -76,7 +80,7 @@ class BookCategoryController with ChangeNotifier {
     print(responseRomance.statusCode);
     if (responseRomance.statusCode == 200) {
       decodedData = jsonDecode(responseRomance.body);
-      apiResModel = BookApiModel.fromJson(decodedData);
+      apiResModelHorror = BookApiModel.fromJson(decodedData);
     } else {
       print("api failed");
     }
@@ -95,7 +99,7 @@ class BookCategoryController with ChangeNotifier {
     print(responseRomance.statusCode);
     if (responseRomance.statusCode == 200) {
       decodedData = jsonDecode(responseRomance.body);
-      apiResModel = BookApiModel.fromJson(decodedData);
+      apiResModelRom = BookApiModel.fromJson(decodedData);
     } else {
       print("api failed");
     }

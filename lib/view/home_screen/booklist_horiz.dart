@@ -13,6 +13,7 @@ class BookListHoriz extends StatelessWidget {
     required this.date,
     required this.pageNo,
     required this.desc,
+    this.url = '',
   });
   final String title;
   final String image;
@@ -23,6 +24,7 @@ class BookListHoriz extends StatelessWidget {
   final String date;
   final int pageNo;
   final String desc;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,7 @@ class BookListHoriz extends StatelessWidget {
                 date: date,
                 pageNo: pageNo,
                 desc: desc,
+                url: url,
               ),
             ),
           );

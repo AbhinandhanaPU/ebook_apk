@@ -1,5 +1,7 @@
+import 'package:ebook_apk/controller/book_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BookDetails extends StatelessWidget {
   const BookDetails({
@@ -13,6 +15,7 @@ class BookDetails extends StatelessWidget {
     required this.date,
     required this.pageNo,
     required this.desc,
+    this.url = '',
   });
   final String title;
   final String image;
@@ -23,6 +26,7 @@ class BookDetails extends StatelessWidget {
   final String date;
   final int pageNo;
   final String desc;
+  final String url;
   @override
   Widget build(BuildContext context) {
     final TextStyle largeTextStyle =
@@ -125,7 +129,10 @@ class BookDetails extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 5),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Provider.of<NewestBookController>(context, listen: false)
+                .launchURL(url);
+          },
           child: Text(
             "READ",
             style: TextStyle(

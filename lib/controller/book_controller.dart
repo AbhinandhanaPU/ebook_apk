@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ebook_apk/model/bookapi_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class NewestBookController with ChangeNotifier {
   Map<String, dynamic> decodedData = {};
@@ -26,4 +27,27 @@ class NewestBookController with ChangeNotifier {
 
     notifyListeners();
   }
+
+  // Function to launch a URL
+  Future<void> launchURL(String url) async {
+    try {
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      print('Error launching URL: $e');
+    }
+    notifyListeners();
+  }
+
+  // void shareText({String textToShare = ""}) {
+  //   try {
+  //     Share.share(textToShare);
+  //   } catch (e) {
+  //     print('Error sharing: $e');
+  //   }
+  //   notifyListeners();
+  // }
 }

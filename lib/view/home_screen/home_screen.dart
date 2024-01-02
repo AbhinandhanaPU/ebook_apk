@@ -119,6 +119,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ?.description
                                           .toString() ??
                                       "",
+                                  url: newestController
+                                          .apiResModel
+                                          ?.items?[index]
+                                          .accessInfo
+                                          ?.webReaderLink ??
+                                      '',
                                 )),
                       ),
                     ),

@@ -2,14 +2,33 @@ import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class BookDetails extends StatelessWidget {
-  const BookDetails({super.key});
-
+  const BookDetails({
+    super.key,
+    required this.title,
+    required this.image,
+    required this.subtitle,
+    required this.author,
+    required this.lang,
+    required this.publisher,
+    required this.date,
+    required this.pageNo,
+    required this.desc,
+  });
+  final String title;
+  final String image;
+  final String subtitle;
+  final String author;
+  final String lang;
+  final String publisher;
+  final String date;
+  final int pageNo;
+  final String desc;
   @override
   Widget build(BuildContext context) {
     final TextStyle largeTextStyle =
         TextStyle(fontSize: 18, fontWeight: FontWeight.w800);
     final TextStyle smallTextStyle =
-        TextStyle(fontSize: 18, fontWeight: FontWeight.w500);
+        TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
     return Scaffold(
       appBar: AppBar(
         foregroundColor: ColorConstant.themeColor,
@@ -25,23 +44,26 @@ class BookDetails extends StatelessWidget {
                 child: Container(
                   height: 200,
                   width: 130,
-                  child: Image.network("src"),
+                  child: Image.network(image),
                   decoration: BoxDecoration(
-                      image: DecorationImage(image: NetworkImage("url"))),
+                      image: DecorationImage(
+                          image: NetworkImage("url"), fit: BoxFit.fill)),
                 ),
               ),
               SizedBox(height: 10),
               // Title
               Center(
                 child: Text(
-                  "In publishing and graphic design",
+                  title,
+                  // "In publishing and graphic design",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
               SizedBox(height: 10),
               // subtitle
               Text(
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate ",
+                subtitle,
+                // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate ",
                 textAlign: TextAlign.justify,
                 style: largeTextStyle,
               ),
@@ -50,7 +72,7 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("Authors : ", style: largeTextStyle),
-                  Text("abhinandhana", style: smallTextStyle),
+                  Text("$author", style: smallTextStyle),
                 ],
               ),
               SizedBox(height: 10),
@@ -58,7 +80,7 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("language :", style: largeTextStyle),
-                  Text(" english", style: smallTextStyle)
+                  Text(" $lang", style: smallTextStyle)
                 ],
               ),
               SizedBox(height: 10),
@@ -66,7 +88,7 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("publisher : ", style: largeTextStyle),
-                  Text("usjdfkagwosvdhjah", style: smallTextStyle),
+                  Text("$publisher", style: smallTextStyle),
                 ],
               ),
               SizedBox(height: 10),
@@ -74,7 +96,7 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("Published date : ", style: largeTextStyle),
-                  Text("05/05/15", style: smallTextStyle),
+                  Text("$date", style: smallTextStyle),
                 ],
               ),
               SizedBox(height: 10),
@@ -82,16 +104,17 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("No. of pages : ", style: largeTextStyle),
-                  Text("200", style: smallTextStyle),
+                  Text("$pageNo", style: smallTextStyle),
                 ],
               ),
               SizedBox(height: 10),
               // descrption
-              Text("Descrption", style: largeTextStyle),
+              Text("Description", style: largeTextStyle),
               SizedBox(height: 5),
 
               Text(
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking",
+                desc,
+                // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking",
                 textAlign: TextAlign.justify,
                 style: smallTextStyle,
               ),

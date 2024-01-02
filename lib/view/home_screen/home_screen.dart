@@ -80,6 +80,45 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ?.imageLinks
                                           ?.thumbnail ??
                                       "",
+                                  subtitle: newestController.apiResModel
+                                          ?.items?[index].volumeInfo?.subtitle
+                                          .toString() ??
+                                      "",
+                                  author: newestController
+                                          .apiResModel
+                                          ?.items?[index]
+                                          .volumeInfo
+                                          ?.authors?[0]
+                                          .toString() ??
+                                      "",
+                                  lang: newestController.apiResModel
+                                          ?.items?[index].volumeInfo?.language
+                                          .toString() ??
+                                      "",
+                                  publisher: newestController.apiResModel
+                                          ?.items?[index].volumeInfo?.publisher
+                                          .toString() ??
+                                      "",
+                                  date: newestController
+                                          .apiResModel
+                                          ?.items?[index]
+                                          .volumeInfo
+                                          ?.publishedDate
+                                          .toString() ??
+                                      "",
+                                  pageNo: newestController
+                                          .apiResModel
+                                          ?.items?[index]
+                                          .volumeInfo
+                                          ?.pageCount ??
+                                      0,
+                                  desc: newestController
+                                          .apiResModel
+                                          ?.items?[index]
+                                          .volumeInfo
+                                          ?.description
+                                          .toString() ??
+                                      "",
                                 )),
                       ),
                     ),
@@ -93,22 +132,50 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(
-                            categoryController
-                                    .apiResModelFantacy?.items?.length ??
+                          categoryController
+                                  .apiResModelFantacy?.items?.length ??
+                              0,
+                          (index) => BookListHoriz(
+                            title: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            image: categoryController
+                                    .apiResModelFantacy
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.thumbnail ??
+                                "",
+                            subtitle: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            author: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.authors?[0]
+                                    .toString() ??
+                                "",
+                            lang: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.language
+                                    .toString() ??
+                                "",
+                            publisher: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.publisher
+                                    .toString() ??
+                                "",
+                            date: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.publishedDate
+                                    .toString() ??
+                                "",
+                            pageNo: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.pageCount ??
                                 0,
-                            (index) => BookListHoriz(
-                                  title: categoryController.apiResModelFantacy
-                                          ?.items?[index].volumeInfo?.title
-                                          .toString() ??
-                                      "",
-                                  image: categoryController
-                                          .apiResModelFantacy
-                                          ?.items?[index]
-                                          .volumeInfo
-                                          ?.imageLinks
-                                          ?.thumbnail ??
-                                      "",
-                                )),
+                            desc: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.description
+                                    .toString() ??
+                                "",
+                          ),
+                        ),
                       ),
                     ),
                     Text(
@@ -121,22 +188,49 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(
-                            categoryController
-                                    .apiResModelHorror?.items?.length ??
+                          categoryController.apiResModelHorror?.items?.length ??
+                              0,
+                          (index) => BookListHoriz(
+                            title: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            image: categoryController
+                                    .apiResModelHorror
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.thumbnail ??
+                                "",
+                            subtitle: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            author: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.authors?[0]
+                                    .toString() ??
+                                "",
+                            lang: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.language
+                                    .toString() ??
+                                "",
+                            publisher: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.publisher
+                                    .toString() ??
+                                "",
+                            date: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.publishedDate
+                                    .toString() ??
+                                "",
+                            pageNo: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.pageCount ??
                                 0,
-                            (index) => BookListHoriz(
-                                  title: categoryController.apiResModelHorror
-                                          ?.items?[index].volumeInfo?.title
-                                          .toString() ??
-                                      "",
-                                  image: categoryController
-                                          .apiResModelHorror
-                                          ?.items?[index]
-                                          .volumeInfo
-                                          ?.imageLinks
-                                          ?.thumbnail ??
-                                      "",
-                                )),
+                            desc: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.description
+                                    .toString() ??
+                                "",
+                          ),
+                        ),
                       ),
                     ),
                     Text(
@@ -149,22 +243,50 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(
-                            categoryController
-                                    .apiResModelAdventure?.items?.length ??
+                          categoryController
+                                  .apiResModelAdventure?.items?.length ??
+                              0,
+                          (index) => BookListHoriz(
+                            title: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            image: categoryController
+                                    .apiResModelAdventure
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.thumbnail ??
+                                "",
+                            subtitle: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            author: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.authors?[0]
+                                    .toString() ??
+                                "",
+                            lang: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.language
+                                    .toString() ??
+                                "",
+                            publisher: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.publisher
+                                    .toString() ??
+                                "",
+                            date: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.publishedDate
+                                    .toString() ??
+                                "",
+                            pageNo: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.pageCount ??
                                 0,
-                            (index) => BookListHoriz(
-                                  title: categoryController.apiResModelAdventure
-                                          ?.items?[index].volumeInfo?.title
-                                          .toString() ??
-                                      "",
-                                  image: categoryController
-                                          .apiResModelAdventure
-                                          ?.items?[index]
-                                          .volumeInfo
-                                          ?.imageLinks
-                                          ?.thumbnail ??
-                                      "",
-                                )),
+                            desc: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.description
+                                    .toString() ??
+                                "",
+                          ),
+                        ),
                       ),
                     ),
                     Text(
@@ -177,21 +299,48 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(
-                            categoryController.apiResModelRom?.items?.length ??
+                          categoryController.apiResModelRom?.items?.length ?? 0,
+                          (index) => BookListHoriz(
+                            title: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            image: categoryController
+                                    .apiResModelRom
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.thumbnail ??
+                                "",
+                            subtitle: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            author: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.authors?[0]
+                                    .toString() ??
+                                "",
+                            lang: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.language
+                                    .toString() ??
+                                "",
+                            publisher: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.publisher
+                                    .toString() ??
+                                "",
+                            date: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.publishedDate
+                                    .toString() ??
+                                "",
+                            pageNo: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.pageCount ??
                                 0,
-                            (index) => BookListHoriz(
-                                  title: categoryController.apiResModelRom
-                                          ?.items?[index].volumeInfo?.title
-                                          .toString() ??
-                                      "",
-                                  image: categoryController
-                                          .apiResModelRom
-                                          ?.items?[index]
-                                          .volumeInfo
-                                          ?.imageLinks
-                                          ?.thumbnail ??
-                                      "",
-                                )),
+                            desc: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.description
+                                    .toString() ??
+                                "",
+                          ),
+                        ),
                       ),
                     ),
                     Text(
@@ -204,22 +353,50 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: List.generate(
-                            categoryController
-                                    .apiResModelThriller?.items?.length ??
+                          categoryController
+                                  .apiResModelThriller?.items?.length ??
+                              0,
+                          (index) => BookListHoriz(
+                            title: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            image: categoryController
+                                    .apiResModelThriller
+                                    ?.items?[index]
+                                    .volumeInfo
+                                    ?.imageLinks
+                                    ?.thumbnail ??
+                                "",
+                            subtitle: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.title
+                                    .toString() ??
+                                "",
+                            author: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.authors?[0]
+                                    .toString() ??
+                                "",
+                            lang: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.language
+                                    .toString() ??
+                                "",
+                            publisher: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.publisher
+                                    .toString() ??
+                                "",
+                            date: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.publishedDate
+                                    .toString() ??
+                                "",
+                            pageNo: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.pageCount ??
                                 0,
-                            (index) => BookListHoriz(
-                                  title: categoryController.apiResModelThriller
-                                          ?.items?[index].volumeInfo?.title
-                                          .toString() ??
-                                      "",
-                                  image: categoryController
-                                          .apiResModelThriller
-                                          ?.items?[index]
-                                          .volumeInfo
-                                          ?.imageLinks
-                                          ?.thumbnail ??
-                                      "",
-                                )),
+                            desc: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.description
+                                    .toString() ??
+                                "",
+                          ),
+                        ),
                       ),
                     ),
                   ],

@@ -1,6 +1,6 @@
 import 'package:ebook_apk/controller/search_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/view/global_widgets/booklist_vertical.dart';
+import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -114,14 +114,32 @@ class _SearchScreenState extends State<SearchScreen> {
                         itemCount:
                             searchController.apiSearchModel?.items?.length ?? 0,
                         itemBuilder: (context, index) => BookListVertical(
+                          image: searchController.apiSearchModel?.items?[index]
+                                  .volumeInfo?.imageLinks?.smallThumbnail ??
+                              "",
                           title: searchController.apiSearchModel?.items?[index]
                                   .volumeInfo?.title ??
                               "",
                           author: searchController.apiSearchModel?.items?[index]
                                   .volumeInfo?.authors?[0] ??
                               "",
-                          image: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.imageLinks?.smallThumbnail ??
+                          subtitle: searchController.apiSearchModel
+                                  ?.items?[index].volumeInfo?.subtitle ??
+                              "",
+                          lang: searchController.apiSearchModel?.items?[index]
+                                  .volumeInfo?.language ??
+                              "",
+                          publisher: searchController.apiSearchModel
+                                  ?.items?[index].volumeInfo?.publisher ??
+                              "",
+                          date: searchController.apiSearchModel?.items?[index]
+                                  .volumeInfo?.publishedDate ??
+                              "",
+                          pageNo: searchController.apiSearchModel?.items?[index]
+                                  .volumeInfo?.pageCount ??
+                              0,
+                          desc: searchController.apiSearchModel?.items?[index]
+                                  .volumeInfo?.description ??
                               "",
                         ),
                       ))

@@ -8,4 +8,5 @@ class ColorConstant {
   static Color activegrey = Color(0xffF5F5F5);
   static Color inActiveGrey = Color(0xffD9D9D9);
   static Color red = Colors.red;
+  static Color redBlack = Color.fromARGB(255, 61, 2, 2);
 }

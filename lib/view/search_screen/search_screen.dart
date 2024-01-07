@@ -1,5 +1,6 @@
 import 'package:ebook_apk/controller/search_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +20,52 @@ class _SearchScreenState extends State<SearchScreen> {
     final searchController = Provider.of<BookSearchController>(context);
 
     return Scaffold(
-      body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      body: Column(children: [
+        Container(
+          width: double.infinity,
+          height: 230,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                ColorConstant.mainBlack,
+                ColorConstant.mainBlack,
+                ColorConstant.redBlack,
+                ColorConstant.redBlack,
+                ColorConstant.mainBlack,
+                ColorConstant.mainBlack
+              ],
+              begin: Alignment.bottomLeft,
+            ),
+            image: DecorationImage(
+              image: AssetImage(ImageConstant.homeScreen),
+              fit: BoxFit.fill,
+              opacity: 0.7,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Discover",
+                  style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: ColorConstant.mainWhite),
+                ),
+                Text(
+                  "Search from more than 30 millioin books",
+                  style:
+                      TextStyle(fontSize: 18, color: ColorConstant.mainWhite),
+                ),
+              ],
+            ),
+          ),
+        ),
         Padding(
-          padding: EdgeInsets.only(top: 40, left: 10, right: 10),
+          padding: EdgeInsets.only(top: 10, left: 10, right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -29,6 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 controller: searchFormController,
                 cursorColor: ColorConstant.mainBlack,
                 decoration: InputDecoration(
+                  hintText: "Book title",
                   constraints: BoxConstraints(maxWidth: 250, maxHeight: 60),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -80,7 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       MaterialStatePropertyAll(ColorConstant.themeColor),
                   elevation: MaterialStatePropertyAll(10),
                   padding: MaterialStatePropertyAll(
-                      EdgeInsets.symmetric(horizontal: 25, vertical: 11)),
+                      EdgeInsets.symmetric(horizontal: 25, vertical: 12)),
                   shape: MaterialStatePropertyAll(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -93,56 +138,41 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         SizedBox(height: 20),
         Expanded(
-            child: isSearched == false
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Search",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500)),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.search,
-                        weight: 30,
-                      )
-                    ],
-                  )
-                : searchController.isLoading == true
-                    ? Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                        itemCount:
-                            searchController.apiSearchModel?.items?.length ?? 0,
-                        itemBuilder: (context, index) => BookListVertical(
-                          image: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.imageLinks?.smallThumbnail ??
-                              "",
-                          title: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.title ??
-                              "",
-                          author: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.authors?[0] ??
-                              "",
-                          publisher: searchController.apiSearchModel
-                                  ?.items?[index].volumeInfo?.publisher ??
-                              "",
-                          date: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.publishedDate ??
-                              "",
-                          pageNo: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.pageCount ??
-                              0,
-                          desc: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.description ??
-                              "",
-                          url: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.previewLink ??
-                              '',
-                          infoUrl: searchController.apiSearchModel
-                                  ?.items?[index].volumeInfo?.infoLink ??
-                              '',
-                        ),
-                      ))
+            child: searchController.isLoading == true
+                ? Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    itemCount:
+                        searchController.apiSearchModel?.items?.length ?? 0,
+                    itemBuilder: (context, index) => BookListVertical(
+                      image: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.imageLinks?.smallThumbnail ??
+                          "",
+                      title: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.title ??
+                          "",
+                      author: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.authors?[0] ??
+                          "",
+                      publisher: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.publisher ??
+                          "",
+                      date: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.publishedDate ??
+                          "",
+                      pageNo: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.pageCount ??
+                          0,
+                      desc: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.description ??
+                          "",
+                      url: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.previewLink ??
+                          '',
+                      infoUrl: searchController.apiSearchModel?.items?[index]
+                              .volumeInfo?.infoLink ??
+                          '',
+                    ),
+                  ))
       ]),
     );
   }

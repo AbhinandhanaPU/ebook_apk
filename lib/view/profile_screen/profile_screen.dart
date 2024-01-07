@@ -1,5 +1,6 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/profile_screen/option_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -156,8 +157,8 @@ class ProfileScreen extends StatelessWidget {
                                         color: ColorConstant.themeColor),
                                   )),
                               ElevatedButton(
-                                  onPressed: () {
-                                    SystemNavigator.pop();
+                                  onPressed: () async {
+                                    await FirebaseAuth.instance.signOut();
                                   },
                                   child: Text(
                                     "Logout",

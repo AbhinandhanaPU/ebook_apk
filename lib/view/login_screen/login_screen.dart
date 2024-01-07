@@ -1,6 +1,7 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/bottomnav_screen/bottomnav_screen.dart';
 import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -71,20 +72,36 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 50),
               Center(
                 child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BottomNavScreen(),
-                          ),
-                          (route) => false);
+                    onPressed: () async {
+                      try {
+                        final credential = await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: userLoginController.text,
+                                password: passLoginController.text);
+                        if (credential.user?.uid != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Login successfull")));
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BottomNavScreen(),
+                              ),
+                              (route) => false);
+                        }
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          print('No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          print('Wrong password provided for that user.');
+                        }
+                      }
                     },
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStatePropertyAll(ColorConstant.themeColor),
                         elevation: MaterialStatePropertyAll(10),
-                        padding: MaterialStatePropertyAll(EdgeInsets.symmetric(
-                            horizontal: 150, vertical: 11)),
+                        padding: MaterialStatePropertyAll(
+                            EdgeInsets.symmetric(horizontal: 35, vertical: 11)),
                         shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)))),
                     child: Text(

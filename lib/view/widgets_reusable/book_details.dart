@@ -38,7 +38,7 @@ class BookDetails extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Share.share("Check out this Book: \n $title \n $infoUrl");
+                Share.share("Check out this Book: \n $title \n \n$infoUrl");
               },
               icon: Icon(Icons.share)),
           IconButton(

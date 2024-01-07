@@ -28,19 +28,6 @@ class NewestBookController with ChangeNotifier {
     notifyListeners();
   }
 
-  // Function to launch a URL
-  // Future<void> launchURL(String url) async {
-  //   try {
-  //     if (await canLaunchUrl(Uri.parse(url))) {
-  //       await launchUrl(Uri.parse(url));
-  //     } else {
-  //       throw 'Could not launch $url';
-  //     }
-  //   } catch (e) {
-  //     print('Error launching URL: $e');
-  //   }
-  //   notifyListeners();
-  // }
   Future openUrl(String urllink) async {
     var url = Uri.parse(urllink);
 

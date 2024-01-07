@@ -73,13 +73,13 @@ class BookCategoryController with ChangeNotifier {
   Future fetchHorrorData() async {
     isLoading = true;
     notifyListeners();
-    final urlRomance = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:romance&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+    final urlHorror = Uri.parse(
+      "https://www.googleapis.com/books/v1/volumes?q=subject:horror&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
     );
-    final responseRomance = await http.get(urlRomance);
-    print(responseRomance.statusCode);
-    if (responseRomance.statusCode == 200) {
-      decodedData = jsonDecode(responseRomance.body);
+    final responseHorror = await http.get(urlHorror);
+    print(responseHorror.statusCode);
+    if (responseHorror.statusCode == 200) {
+      decodedData = jsonDecode(responseHorror.body);
       apiResModelHorror = BookApiModel.fromJson(decodedData);
     } else {
       print("api failed");

@@ -2,6 +2,7 @@ import 'package:ebook_apk/controller/book_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class BookDetails extends StatelessWidget {
   const BookDetails({
@@ -14,6 +15,7 @@ class BookDetails extends StatelessWidget {
     required this.pageNo,
     required this.desc,
     required this.url,
+    required this.infoUrl,
   });
   final String title;
   final String image;
@@ -23,6 +25,7 @@ class BookDetails extends StatelessWidget {
   final int pageNo;
   final String desc;
   final String url;
+  final String infoUrl;
   @override
   Widget build(BuildContext context) {
     final TextStyle largeTextStyle =
@@ -32,6 +35,18 @@ class BookDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         foregroundColor: ColorConstant.themeColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Share.share("Check out this Book: \n $title \n $infoUrl");
+              },
+              icon: Icon(Icons.share)),
+          IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.bookmark_border),
+              iconSize: 30),
+          SizedBox(width: 20)
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 15, right: 15, top: 4),

@@ -117,6 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           .volumeInfo
                                           ?.previewLink ??
                                       '',
+                                  infoUrl: newestController
+                                          .apiResModel
+                                          ?.items?[index]
+                                          .volumeInfo
+                                          ?.infoLink ??
+                                      '',
                                 )),
                       ),
                     ),
@@ -167,6 +173,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             url: categoryController.apiResModelFantacy
                                     ?.items?[index].volumeInfo?.previewLink ??
                                 "",
+                            infoUrl: categoryController.apiResModelFantacy
+                                    ?.items?[index].volumeInfo?.infoLink ??
+                                "",
                           ),
                         ),
                       ),
@@ -216,6 +225,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "",
                             url: categoryController.apiResModelHorror
                                     ?.items?[index].volumeInfo?.previewLink ??
+                                "",
+                            infoUrl: categoryController.apiResModelHorror
+                                    ?.items?[index].volumeInfo?.infoLink ??
                                 "",
                           ),
                         ),
@@ -268,6 +280,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             url: categoryController.apiResModelAdventure
                                     ?.items?[index].volumeInfo?.previewLink ??
                                 "",
+                            infoUrl: categoryController.apiResModelAdventure
+                                    ?.items?[index].volumeInfo?.infoLink ??
+                                "",
                           ),
                         ),
                       ),
@@ -316,6 +331,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "",
                             url: categoryController.apiResModelRom
                                     ?.items?[index].volumeInfo?.previewLink ??
+                                "",
+                            infoUrl: categoryController.apiResModelRom
+                                    ?.items?[index].volumeInfo?.infoLink ??
                                 "",
                           ),
                         ),
@@ -367,6 +385,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "",
                             url: categoryController.apiResModelThriller
                                     ?.items?[index].volumeInfo?.previewLink ??
+                                "",
+                            infoUrl: categoryController.apiResModelThriller
+                                    ?.items?[index].volumeInfo?.infoLink ??
                                 "",
                           ),
                         ),

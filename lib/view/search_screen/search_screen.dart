@@ -136,7 +136,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                   .volumeInfo?.description ??
                               "",
                           url: searchController.apiSearchModel?.items?[index]
-                                  .accessInfo?.webReaderLink ??
+                                  .volumeInfo?.previewLink ??
+                              '',
+                          infoUrl: searchController.apiSearchModel
+                                  ?.items?[index].volumeInfo?.infoLink ??
                               '',
                         ),
                       ))

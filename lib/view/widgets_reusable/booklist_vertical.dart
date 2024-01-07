@@ -12,6 +12,7 @@ class BookListVertical extends StatelessWidget {
     required this.pageNo,
     required this.desc,
     required this.url,
+    required this.infoUrl,
   });
   final String title;
   final String image;
@@ -21,6 +22,7 @@ class BookListVertical extends StatelessWidget {
   final int pageNo;
   final String desc;
   final String url;
+  final String infoUrl;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -37,6 +39,7 @@ class BookListVertical extends StatelessWidget {
                 pageNo: pageNo,
                 desc: desc,
                 url: url,
+                infoUrl: infoUrl,
               ),
             ));
       },

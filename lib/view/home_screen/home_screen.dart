@@ -40,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorConstant.themeColor,
-        foregroundColor: ColorConstant.mainWhite,
+        // backgroundColor: ColorConstant.themeColor,
+        // foregroundColor: ColorConstant.mainWhite,
         elevation: 10,
         shadowColor: ColorConstant.mainBlack,
         actions: [
@@ -114,8 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   url: newestController
                                           .apiResModel
                                           ?.items?[index]
-                                          .accessInfo
-                                          ?.webReaderLink ??
+                                          .volumeInfo
+                                          ?.previewLink ??
                                       '',
                                 )),
                       ),
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .toString() ??
                                 "",
                             url: categoryController.apiResModelFantacy
-                                    ?.items?[index].accessInfo?.webReaderLink ??
+                                    ?.items?[index].volumeInfo?.previewLink ??
                                 "",
                           ),
                         ),
@@ -215,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .toString() ??
                                 "",
                             url: categoryController.apiResModelHorror
-                                    ?.items?[index].accessInfo?.webReaderLink ??
+                                    ?.items?[index].volumeInfo?.previewLink ??
                                 "",
                           ),
                         ),
@@ -266,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .toString() ??
                                 "",
                             url: categoryController.apiResModelAdventure
-                                    ?.items?[index].accessInfo?.webReaderLink ??
+                                    ?.items?[index].volumeInfo?.previewLink ??
                                 "",
                           ),
                         ),
@@ -315,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .toString() ??
                                 "",
                             url: categoryController.apiResModelRom
-                                    ?.items?[index].accessInfo?.webReaderLink ??
+                                    ?.items?[index].volumeInfo?.previewLink ??
                                 "",
                           ),
                         ),
@@ -366,7 +366,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .toString() ??
                                 "",
                             url: categoryController.apiResModelThriller
-                                    ?.items?[index].accessInfo?.webReaderLink ??
+                                    ?.items?[index].volumeInfo?.previewLink ??
                                 "",
                           ),
                         ),

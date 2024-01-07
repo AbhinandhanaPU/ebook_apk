@@ -1,6 +1,7 @@
 import 'package:ebook_apk/controller/book_controller.dart';
 import 'package:ebook_apk/controller/category_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_horiz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,24 +40,49 @@ class _HomeScreenState extends State<HomeScreen> {
     final categoryController = Provider.of<BookCategoryController>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: ColorConstant.themeColor,
-        // foregroundColor: ColorConstant.mainWhite,
-        elevation: 10,
-        shadowColor: ColorConstant.mainBlack,
-        actions: [
-          Icon(Icons.dark_mode_outlined, size: 30),
-          SizedBox(width: 20)
-        ],
-      ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 22, left: 20),
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: SingleChildScrollView(
           child: newestController.isLoading == true
               ? Center(child: CircularProgressIndicator())
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      width: double.infinity,
+                      height: 230,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: AssetImage(ImageConstant.bookStore),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20, top: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Explore",
+                              style: TextStyle(
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorConstant.mainWhite),
+                            ),
+                            Text(
+                              "Books",
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorConstant.mainWhite),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
                     Text(
                       "Latest release",
                       style:

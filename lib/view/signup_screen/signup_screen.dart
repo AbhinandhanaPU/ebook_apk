@@ -11,7 +11,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController userSignController = TextEditingController();
   TextEditingController mailSignController = TextEditingController();
   TextEditingController passSignController = TextEditingController();
   TextEditingController confirmSignController = TextEditingController();
@@ -50,23 +49,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(height: 40),
               TextField(
-                controller: userSignController,
-                decoration: InputDecoration(
-                    hintText: "User Name",
-                    prefixIcon:
-                        Icon(Icons.person, color: ColorConstant.iconGrey),
-                    enabledBorder: enabledBorder,
-                    focusedBorder: focusedBorder),
-              ),
-              SizedBox(height: 30),
-              TextField(
                 controller: mailSignController,
                 decoration: InputDecoration(
                     hintText: "Email ID",
                     prefixIcon:
                         Icon(Icons.email, color: ColorConstant.iconGrey),
                     enabledBorder: enabledBorder,
-                    focusedBorder: focusedBorder),
+                    focusedBorder: focusedBorder,
+                    focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide:
+                            BorderSide(width: 2.5, color: ColorConstant.red))),
               ),
               SizedBox(height: 30),
               TextField(
@@ -92,27 +85,78 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Center(
                 child: ElevatedButton(
                     onPressed: () async {
-                      try {
-                        final credential = await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
-                          email: mailSignController.text,
-                          password: passSignController.text,
+                      if (mailSignController.text.isNotEmpty &&
+                          passSignController.text.isNotEmpty &&
+                          confirmSignController.text.isNotEmpty) {
+                        if (passSignController.text !=
+                            confirmSignController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                "Password and confirm password is not matching",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                            ),
+                          );
+                        } else {
+                          try {
+                            final credential = await FirebaseAuth.instance
+                                .createUserWithEmailAndPassword(
+                              email: mailSignController.text,
+                              password: passSignController.text,
+                            );
+                            if (credential.user?.uid != null) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            }
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'The given password is invalid. Password should be at least 6 characters',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16),
+                                  ),
+                                ),
+                              );
+                              print(
+                                  'The given password is invalid. Password should be at least 6 characters');
+                            } else if (e.code == 'email-already-in-use') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'The account already exists for that email.',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16)),
+                                ),
+                              );
+                              print(
+                                  'The account already exists for that email.');
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              "Email ID and Password is required",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
                         );
-                        if (credential.user?.uid != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
-                              ));
-                        }
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'weak-password') {
-                          print('The password provided is too weak.');
-                        } else if (e.code == 'email-already-in-use') {
-                          print('The account already exists for that email.');
-                        }
-                      } catch (e) {
-                        print(e);
                       }
                     },
                     style: ButtonStyle(

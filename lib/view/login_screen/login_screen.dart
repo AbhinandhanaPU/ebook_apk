@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController userLoginController = TextEditingController();
+    TextEditingController mailLoginController = TextEditingController();
     TextEditingController passLoginController = TextEditingController();
     final OutlineInputBorder enabledBorder = OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
@@ -44,9 +44,9 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 80),
               TextField(
-                controller: userLoginController,
+                controller: mailLoginController,
                 decoration: InputDecoration(
-                    hintText: "User Name",
+                    hintText: "Email ID",
                     prefixIcon:
                         Icon(Icons.person, color: ColorConstant.iconGrey),
                     enabledBorder: enabledBorder,
@@ -73,27 +73,47 @@ class LoginScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                     onPressed: () async {
-                      try {
-                        final credential = await FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
-                                email: userLoginController.text,
-                                password: passLoginController.text);
-                        if (credential.user?.uid != null) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("Login successfull")));
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BottomNavScreen(),
+                      if (mailLoginController.text.isNotEmpty &&
+                          passLoginController.text.isNotEmpty) {
+                        try {
+                          final credential = await FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: mailLoginController.text,
+                                  password: passLoginController.text);
+                          if (credential.user?.uid != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("Login successfull")));
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BottomNavScreen(),
+                                ),
+                                (route) => false);
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'user-not-found') {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text("Invalid mail id",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16)),
                               ),
-                              (route) => false);
+                            );
+
+                            print('No user found for that email.');
+                          } else if (e.code == 'wrong-password') {
+                            print('Wrong password provided for that user.');
+                          }
                         }
-                      } on FirebaseAuthException catch (e) {
-                        if (e.code == 'user-not-found') {
-                          print('No user found for that email.');
-                        } else if (e.code == 'wrong-password') {
-                          print('Wrong password provided for that user.');
-                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Email Id and password is required",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16)),
+                          ),
+                        );
                       }
                     },
                     style: ButtonStyle(

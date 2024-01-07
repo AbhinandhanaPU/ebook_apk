@@ -1,5 +1,6 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/profile_screen/option_screen.dart';
+import 'package:ebook_apk/view/signup_login/signup_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -159,6 +160,13 @@ class ProfileScreen extends StatelessWidget {
                               ElevatedButton(
                                   onPressed: () async {
                                     await FirebaseAuth.instance.signOut();
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              SignupLoginScreen(),
+                                        ),
+                                        (route) => false);
                                   },
                                   child: Text(
                                     "Logout",

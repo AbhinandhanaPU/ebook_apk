@@ -123,12 +123,6 @@ class _SearchScreenState extends State<SearchScreen> {
                           author: searchController.apiSearchModel?.items?[index]
                                   .volumeInfo?.authors?[0] ??
                               "",
-                          subtitle: searchController.apiSearchModel
-                                  ?.items?[index].volumeInfo?.subtitle ??
-                              "",
-                          lang: searchController.apiSearchModel?.items?[index]
-                                  .volumeInfo?.language ??
-                              "",
                           publisher: searchController.apiSearchModel
                                   ?.items?[index].volumeInfo?.publisher ??
                               "",
@@ -141,6 +135,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           desc: searchController.apiSearchModel?.items?[index]
                                   .volumeInfo?.description ??
                               "",
+                          url: searchController.apiSearchModel?.items?[index]
+                                  .accessInfo?.webReaderLink ??
+                              '',
                         ),
                       ))
       ]),

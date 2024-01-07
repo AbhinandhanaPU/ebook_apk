@@ -29,17 +29,26 @@ class NewestBookController with ChangeNotifier {
   }
 
   // Function to launch a URL
-  Future<void> launchURL(String url) async {
+  // Future<void> launchURL(String url) async {
+  //   try {
+  //     if (await canLaunchUrl(Uri.parse(url))) {
+  //       await launchUrl(Uri.parse(url));
+  //     } else {
+  //       throw 'Could not launch $url';
+  //     }
+  //   } catch (e) {
+  //     print('Error launching URL: $e');
+  //   }
+  //   notifyListeners();
+  // }
+  Future openUrl(String urllink) async {
+    var url = Uri.parse(urllink);
+
     try {
-      if (await canLaunchUrl(Uri.parse(url))) {
-        await launchUrl(Uri.parse(url));
-      } else {
-        throw 'Could not launch $url';
-      }
+      await launchUrl(url);
     } catch (e) {
-      print('Error launching URL: $e');
+      return e;
     }
-    notifyListeners();
   }
 
   // void shareText({String textToShare = ""}) {

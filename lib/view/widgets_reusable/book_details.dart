@@ -8,20 +8,16 @@ class BookDetails extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
-    required this.subtitle,
     required this.author,
-    required this.lang,
     required this.publisher,
     required this.date,
     required this.pageNo,
     required this.desc,
-    this.url = '',
+    required this.url,
   });
   final String title;
   final String image;
-  final String subtitle;
   final String author;
-  final String lang;
   final String publisher;
   final String date;
   final int pageNo;
@@ -43,56 +39,54 @@ class BookDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 10),
               // Image container
               Center(
                 child: Container(
                   height: 200,
                   width: 130,
-                  child: Image.network(image),
+                  // child: Image.network(image),
                   decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                          image: NetworkImage("url"), fit: BoxFit.fill)),
+                          image: NetworkImage(image), fit: BoxFit.fill),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 5.0,
+                          spreadRadius: 1.0,
+                          offset: Offset(
+                              2.0, 10.0), // shadow direction: bottom right
+                        )
+                      ]),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
               // Title
               Center(
                 child: Text(
                   title,
                   // "In publishing and graphic design",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-              ),
-              SizedBox(height: 10),
-              // subtitle
-              Text(
-                subtitle,
-                // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate ",
-                textAlign: TextAlign.justify,
-                style: largeTextStyle,
               ),
               SizedBox(height: 10),
               // Author
               Row(
                 children: [
                   Text("Authors : ", style: largeTextStyle),
-                  Text("$author", style: smallTextStyle),
-                ],
-              ),
-              SizedBox(height: 10),
-              // Langauge
-              Row(
-                children: [
-                  Text("language :", style: largeTextStyle),
-                  Text(" $lang", style: smallTextStyle)
+                  Expanded(child: Text("$author", style: smallTextStyle)),
                 ],
               ),
               SizedBox(height: 10),
               // publisher
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("publisher : ", style: largeTextStyle),
-                  Text("$publisher", style: smallTextStyle),
+                  Expanded(child: Text("$publisher", style: smallTextStyle)),
                 ],
               ),
               SizedBox(height: 10),
@@ -115,7 +109,6 @@ class BookDetails extends StatelessWidget {
               // descrption
               Text("Description", style: largeTextStyle),
               SizedBox(height: 5),
-
               Text(
                 desc,
                 // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking",
@@ -131,25 +124,22 @@ class BookDetails extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             Provider.of<NewestBookController>(context, listen: false)
-                .launchURL(url);
+                .openUrl(url);
           },
           child: Text(
-            "READ",
+            "Preview",
             style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: ColorConstant.mainWhite),
+                color: ColorConstant.themeColor),
           ),
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(ColorConstant.themeColor),
-            padding:
-                MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
-            shape: MaterialStatePropertyAll(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-          ),
+              backgroundColor:
+                  MaterialStatePropertyAll(ColorConstant.mainWhite),
+              padding:
+                  MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
+              shape: MaterialStatePropertyAll(BeveledRectangleBorder(
+                  side: BorderSide(color: ColorConstant.themeColor)))),
         ),
       ),
     );

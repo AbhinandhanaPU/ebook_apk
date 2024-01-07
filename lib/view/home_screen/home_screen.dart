@@ -80,19 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ?.imageLinks
                                           ?.thumbnail ??
                                       "",
-                                  subtitle: newestController.apiResModel
-                                          ?.items?[index].volumeInfo?.subtitle
-                                          .toString() ??
-                                      "",
                                   author: newestController
                                           .apiResModel
                                           ?.items?[index]
                                           .volumeInfo
                                           ?.authors?[0]
-                                          .toString() ??
-                                      "",
-                                  lang: newestController.apiResModel
-                                          ?.items?[index].volumeInfo?.language
                                           .toString() ??
                                       "",
                                   publisher: newestController.apiResModel
@@ -129,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Text(
-                      "fantasy",
+                      "Fantasy",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -153,16 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ?.imageLinks
                                     ?.thumbnail ??
                                 "",
-                            subtitle: categoryController.apiResModelFantacy
-                                    ?.items?[index].volumeInfo?.title
-                                    .toString() ??
-                                "",
                             author: categoryController.apiResModelFantacy
                                     ?.items?[index].volumeInfo?.authors?[0]
-                                    .toString() ??
-                                "",
-                            lang: categoryController.apiResModelFantacy
-                                    ?.items?[index].volumeInfo?.language
                                     .toString() ??
                                 "",
                             publisher: categoryController.apiResModelFantacy
@@ -179,6 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             desc: categoryController.apiResModelFantacy
                                     ?.items?[index].volumeInfo?.description
                                     .toString() ??
+                                "",
+                            url: categoryController.apiResModelFantacy
+                                    ?.items?[index].accessInfo?.webReaderLink ??
                                 "",
                           ),
                         ),
@@ -208,16 +195,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ?.imageLinks
                                     ?.thumbnail ??
                                 "",
-                            subtitle: categoryController.apiResModelHorror
-                                    ?.items?[index].volumeInfo?.title
-                                    .toString() ??
-                                "",
                             author: categoryController.apiResModelHorror
                                     ?.items?[index].volumeInfo?.authors?[0]
-                                    .toString() ??
-                                "",
-                            lang: categoryController.apiResModelHorror
-                                    ?.items?[index].volumeInfo?.language
                                     .toString() ??
                                 "",
                             publisher: categoryController.apiResModelHorror
@@ -235,12 +214,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ?.items?[index].volumeInfo?.description
                                     .toString() ??
                                 "",
+                            url: categoryController.apiResModelHorror
+                                    ?.items?[index].accessInfo?.webReaderLink ??
+                                "",
                           ),
                         ),
                       ),
                     ),
                     Text(
-                      "adventure",
+                      "Adventure",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -264,16 +246,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ?.imageLinks
                                     ?.thumbnail ??
                                 "",
-                            subtitle: categoryController.apiResModelAdventure
-                                    ?.items?[index].volumeInfo?.title
-                                    .toString() ??
-                                "",
                             author: categoryController.apiResModelAdventure
                                     ?.items?[index].volumeInfo?.authors?[0]
-                                    .toString() ??
-                                "",
-                            lang: categoryController.apiResModelAdventure
-                                    ?.items?[index].volumeInfo?.language
                                     .toString() ??
                                 "",
                             publisher: categoryController.apiResModelAdventure
@@ -290,6 +264,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             desc: categoryController.apiResModelAdventure
                                     ?.items?[index].volumeInfo?.description
                                     .toString() ??
+                                "",
+                            url: categoryController.apiResModelAdventure
+                                    ?.items?[index].accessInfo?.webReaderLink ??
                                 "",
                           ),
                         ),
@@ -318,16 +295,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ?.imageLinks
                                     ?.thumbnail ??
                                 "",
-                            subtitle: categoryController.apiResModelRom
-                                    ?.items?[index].volumeInfo?.title
-                                    .toString() ??
-                                "",
                             author: categoryController.apiResModelRom
                                     ?.items?[index].volumeInfo?.authors?[0]
-                                    .toString() ??
-                                "",
-                            lang: categoryController.apiResModelRom
-                                    ?.items?[index].volumeInfo?.language
                                     .toString() ??
                                 "",
                             publisher: categoryController.apiResModelRom
@@ -344,6 +313,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             desc: categoryController.apiResModelRom
                                     ?.items?[index].volumeInfo?.description
                                     .toString() ??
+                                "",
+                            url: categoryController.apiResModelRom
+                                    ?.items?[index].accessInfo?.webReaderLink ??
                                 "",
                           ),
                         ),
@@ -374,16 +346,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ?.imageLinks
                                     ?.thumbnail ??
                                 "",
-                            subtitle: categoryController.apiResModelThriller
-                                    ?.items?[index].volumeInfo?.title
-                                    .toString() ??
-                                "",
                             author: categoryController.apiResModelThriller
                                     ?.items?[index].volumeInfo?.authors?[0]
-                                    .toString() ??
-                                "",
-                            lang: categoryController.apiResModelThriller
-                                    ?.items?[index].volumeInfo?.language
                                     .toString() ??
                                 "",
                             publisher: categoryController.apiResModelThriller
@@ -400,6 +364,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             desc: categoryController.apiResModelThriller
                                     ?.items?[index].volumeInfo?.description
                                     .toString() ??
+                                "",
+                            url: categoryController.apiResModelThriller
+                                    ?.items?[index].accessInfo?.webReaderLink ??
                                 "",
                           ),
                         ),

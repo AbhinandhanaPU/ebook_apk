@@ -6,23 +6,21 @@ class BookListVertical extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
-    required this.subtitle,
     required this.author,
-    required this.lang,
     required this.publisher,
     required this.date,
     required this.pageNo,
     required this.desc,
+    required this.url,
   });
   final String title;
   final String image;
-  final String subtitle;
   final String author;
-  final String lang;
   final String publisher;
   final String date;
   final int pageNo;
   final String desc;
+  final String url;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -31,15 +29,15 @@ class BookListVertical extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => BookDetails(
-                  title: title,
-                  image: image,
-                  subtitle: subtitle,
-                  author: author,
-                  lang: lang,
-                  publisher: publisher,
-                  date: date,
-                  pageNo: pageNo,
-                  desc: desc),
+                title: title,
+                image: image,
+                author: author,
+                publisher: publisher,
+                date: date,
+                pageNo: pageNo,
+                desc: desc,
+                url: url,
+              ),
             ));
       },
       child: Container(

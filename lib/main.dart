@@ -1,5 +1,6 @@
 import 'package:ebook_apk/controller/book_controller.dart';
 import 'package:ebook_apk/controller/category_controller.dart';
+import 'package:ebook_apk/controller/crud_controller.dart';
 import 'package:ebook_apk/controller/search_controller.dart';
 import 'package:ebook_apk/view/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,7 +36,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => BookCategoryController(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CrudController(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

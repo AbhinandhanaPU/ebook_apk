@@ -1,10 +1,11 @@
 import 'package:ebook_apk/controller/book_controller.dart';
+import 'package:ebook_apk/controller/crud_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-class BookDetails extends StatelessWidget {
+class BookDetails extends StatefulWidget {
   const BookDetails({
     super.key,
     required this.title,
@@ -26,8 +27,16 @@ class BookDetails extends StatelessWidget {
   final String desc;
   final String url;
   final String infoUrl;
+  // final DocumentSnapshot<Object?> employee;
+
+  @override
+  State<BookDetails> createState() => _BookDetailsState();
+}
+
+class _BookDetailsState extends State<BookDetails> {
   @override
   Widget build(BuildContext context) {
+    bool bookmark = false;
     final TextStyle largeTextStyle =
         TextStyle(fontSize: 18, fontWeight: FontWeight.w800);
     final TextStyle smallTextStyle =
@@ -38,12 +47,34 @@ class BookDetails extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                Share.share("Check out this Book: \n $title \n \n$infoUrl");
+                Share.share(
+                    "Check out this Book: \n ${widget.title} \n \n${widget.infoUrl}");
               },
               icon: Icon(Icons.share)),
           IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.bookmark_border),
+              onPressed: () {
+                if (bookmark != true) {
+                  Provider.of<CrudController>(context, listen: false).addUser(
+                      title: widget.title,
+                      image: widget.image,
+                      author: widget.author,
+                      publisher: widget.publisher,
+                      date: widget.date,
+                      pageNo: widget.pageNo,
+                      desc: widget.desc,
+                      url: widget.url,
+                      infoUrl: widget.infoUrl);
+                  bookmark = true;
+                  setState(() {});
+                } else {
+                  bookmark = false;
+                  setState(() {});
+                  // Provider.of<CrudController>(context, listen: false).deleteUser(id: books.id)
+                }
+              },
+              icon: bookmark != false
+                  ? Icon(Icons.bookmark)
+                  : Icon(Icons.bookmark_border),
               iconSize: 30),
           SizedBox(width: 20)
         ],
@@ -64,7 +95,7 @@ class BookDetails extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
-                          image: NetworkImage(image), fit: BoxFit.fill),
+                          image: NetworkImage(widget.image), fit: BoxFit.fill),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black26,
@@ -80,7 +111,7 @@ class BookDetails extends StatelessWidget {
               // Title
               Center(
                 child: Text(
-                  title,
+                  widget.title,
                   // "In publishing and graphic design",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -91,7 +122,8 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("Authors : ", style: largeTextStyle),
-                  Expanded(child: Text("$author", style: smallTextStyle)),
+                  Expanded(
+                      child: Text("${widget.author}", style: smallTextStyle)),
                 ],
               ),
               SizedBox(height: 10),
@@ -101,7 +133,9 @@ class BookDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("publisher : ", style: largeTextStyle),
-                  Expanded(child: Text("$publisher", style: smallTextStyle)),
+                  Expanded(
+                      child:
+                          Text("${widget.publisher}", style: smallTextStyle)),
                 ],
               ),
               SizedBox(height: 10),
@@ -109,7 +143,7 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("Published date : ", style: largeTextStyle),
-                  Text("$date", style: smallTextStyle),
+                  Text("${widget.date}", style: smallTextStyle),
                 ],
               ),
               SizedBox(height: 10),
@@ -117,7 +151,7 @@ class BookDetails extends StatelessWidget {
               Row(
                 children: [
                   Text("No. of pages : ", style: largeTextStyle),
-                  Text("$pageNo", style: smallTextStyle),
+                  Text("${widget.pageNo}", style: smallTextStyle),
                 ],
               ),
               SizedBox(height: 10),
@@ -125,7 +159,7 @@ class BookDetails extends StatelessWidget {
               Text("Description", style: largeTextStyle),
               SizedBox(height: 5),
               Text(
-                desc,
+                widget.desc,
                 // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking",
                 textAlign: TextAlign.justify,
                 style: smallTextStyle,
@@ -139,7 +173,7 @@ class BookDetails extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             Provider.of<NewestBookController>(context, listen: false)
-                .openUrl(url);
+                .openUrl(widget.url);
           },
           child: Text(
             "Preview",

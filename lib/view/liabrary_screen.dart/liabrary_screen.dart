@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
+import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 
 class LiabraryScreen extends StatefulWidget {
@@ -10,6 +12,8 @@ class LiabraryScreen extends StatefulWidget {
 }
 
 class _LiabraryScreenState extends State<LiabraryScreen> {
+  CollectionReference bookCollection =
+      FirebaseFirestore.instance.collection('books');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,8 +61,35 @@ class _LiabraryScreenState extends State<LiabraryScreen> {
             ),
           ),
         ),
-        Column(
-          children: [],
+        Expanded(
+          child: StreamBuilder(
+            stream: bookCollection.snapshots(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot books = snapshot.data!.docs[index];
+                    return BookListVertical(
+                      title: "${books["title"]}",
+                      image: "${books["image"]}",
+                      author: "${books["author"]}",
+                      publisher: "${books["publisher"]}",
+                      date: "${books["publisheddate"]}",
+                      pageNo: books['pageno'],
+                      desc: "${books["desc"]}",
+                      url: "${books["previewurl"]}",
+                      infoUrl: "${books["infourl"]}",
+                    );
+                  },
+                );
+              } else {
+                return Center(
+                  child: Text("no books Found"),
+                );
+              }
+            },
+          ),
         )
       ]),
     );

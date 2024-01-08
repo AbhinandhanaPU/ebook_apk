@@ -67,20 +67,13 @@ class BookListVertical extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // SizedBox(height: 10),
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: 205,
-                      child: Text(title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600)),
-                    ),
-                    Icon(Icons.more_vert)
-                  ],
+                SizedBox(
+                  width: 205,
+                  child: Text(title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                 ),
                 SizedBox(height: 10),
                 Text(

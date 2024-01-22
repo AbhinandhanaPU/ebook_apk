@@ -61,6 +61,7 @@ class _LiabraryScreenState extends State<LiabraryScreen> {
             ),
           ),
         ),
+        SizedBox(height: 20),
         Expanded(
           child: StreamBuilder(
             stream: bookCollection.snapshots(),

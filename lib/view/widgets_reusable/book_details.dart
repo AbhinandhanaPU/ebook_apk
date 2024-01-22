@@ -1,5 +1,5 @@
-import 'package:ebook_apk/controller/book_controller.dart';
-import 'package:ebook_apk/controller/crud_controller.dart';
+import 'package:ebook_apk/controller/books/book_controller.dart';
+import 'package:ebook_apk/controller/services/crud_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,14 +34,15 @@ class BookDetails extends StatefulWidget {
 }
 
 class _BookDetailsState extends State<BookDetails> {
+  bool bookmark = false;
   @override
   Widget build(BuildContext context) {
-    bool bookmark = false;
     final TextStyle largeTextStyle =
         TextStyle(fontSize: 18, fontWeight: FontWeight.w800);
     final TextStyle smallTextStyle =
-        TextStyle(fontSize: 18, fontWeight: FontWeight.w400);
+        TextStyle(fontSize: 18, fontWeight: FontWeight.w400, height: 1.5);
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         foregroundColor: ColorConstant.themeColor,
         actions: [
@@ -117,7 +118,7 @@ class _BookDetailsState extends State<BookDetails> {
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               // Author
               Row(
                 children: [
@@ -126,7 +127,7 @@ class _BookDetailsState extends State<BookDetails> {
                       child: Text("${widget.author}", style: smallTextStyle)),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               // publisher
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +139,7 @@ class _BookDetailsState extends State<BookDetails> {
                           Text("${widget.publisher}", style: smallTextStyle)),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               // published date
               Row(
                 children: [
@@ -146,7 +147,7 @@ class _BookDetailsState extends State<BookDetails> {
                   Text("${widget.date}", style: smallTextStyle),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               // No. of pages
               Row(
                 children: [
@@ -154,10 +155,10 @@ class _BookDetailsState extends State<BookDetails> {
                   Text("${widget.pageNo}", style: smallTextStyle),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
               // descrption
               Text("Description", style: largeTextStyle),
-              SizedBox(height: 5),
+              SizedBox(height: 10),
               Text(
                 widget.desc,
                 // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking",
@@ -178,17 +179,18 @@ class _BookDetailsState extends State<BookDetails> {
           child: Text(
             "Preview",
             style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: ColorConstant.themeColor),
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: ColorConstant.mainWhite,
+              letterSpacing: 1.0,
+            ),
           ),
           style: ButtonStyle(
-              backgroundColor:
-                  MaterialStatePropertyAll(ColorConstant.mainWhite),
-              padding:
-                  MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
-              shape: MaterialStatePropertyAll(BeveledRectangleBorder(
-                  side: BorderSide(color: ColorConstant.themeColor)))),
+            backgroundColor: MaterialStatePropertyAll(ColorConstant.themeColor),
+            padding:
+                MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
+            // shape: MaterialStatePropertyAll(RoundedRectangleBorder()),
+          ),
         ),
       ),
     );

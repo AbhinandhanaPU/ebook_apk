@@ -1,7 +1,10 @@
+import 'package:ebook_apk/controller/services/users.dart';
+import 'package:ebook_apk/model/users.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/login_screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -14,6 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController mailSignController = TextEditingController();
   TextEditingController passSignController = TextEditingController();
   TextEditingController confirmSignController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   final OutlineInputBorder enabledBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: BorderSide(width: 1.5, color: ColorConstant.iconGrey));
@@ -23,6 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Provider.of<UserManagement>(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -48,6 +54,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     fontWeight: FontWeight.w500),
               ),
               SizedBox(height: 40),
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(
+                    hintText: "Name",
+                    prefixIcon:
+                        Icon(Icons.person, color: ColorConstant.iconGrey),
+                    enabledBorder: enabledBorder,
+                    focusedBorder: focusedBorder,
+                    focusedErrorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide:
+                            BorderSide(width: 2.5, color: ColorConstant.red))),
+              ),
+              SizedBox(height: 30),
               TextField(
                 controller: mailSignController,
                 decoration: InputDecoration(
@@ -85,7 +105,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Center(
                 child: ElevatedButton(
                     onPressed: () async {
-                      if (mailSignController.text.isNotEmpty &&
+                      if (nameController.text.isNotEmpty &&
+                          mailSignController.text.isNotEmpty &&
                           passSignController.text.isNotEmpty &&
                           confirmSignController.text.isNotEmpty) {
                         if (passSignController.text !=
@@ -144,6 +165,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           } catch (e) {
                             print(e);
                           }
+                          final user = UserModel(
+                              name: nameController.text,
+                              email: mailSignController.text,
+                              password: passSignController.text);
+                          userController.createNewUser(user, context);
                         }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(

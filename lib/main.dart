@@ -1,8 +1,9 @@
-import 'package:ebook_apk/controller/book_controller.dart';
-import 'package:ebook_apk/controller/category_controller.dart';
-import 'package:ebook_apk/controller/crud_controller.dart';
-import 'package:ebook_apk/controller/search_controller.dart';
-import 'package:ebook_apk/view/splash_screen/splash_screen.dart';
+import 'package:ebook_apk/controller/books/book_controller.dart';
+import 'package:ebook_apk/controller/books/category_controller.dart';
+import 'package:ebook_apk/controller/services/crud_controller.dart';
+import 'package:ebook_apk/controller/books/search_controller.dart';
+import 'package:ebook_apk/controller/services/users.dart';
+import 'package:ebook_apk/view/signup_login/signup_login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,10 +41,13 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => CrudController(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => UserManagement(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: SignupLoginScreen(),
       ),
     );
   }

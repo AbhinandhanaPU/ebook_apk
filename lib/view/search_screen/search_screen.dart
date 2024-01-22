@@ -1,4 +1,4 @@
-import 'package:ebook_apk/controller/search_controller.dart';
+import 'package:ebook_apk/controller/books/search_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';

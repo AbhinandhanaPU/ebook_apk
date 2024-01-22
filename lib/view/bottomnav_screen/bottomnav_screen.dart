@@ -1,6 +1,7 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/view/home_screen/home_screen.dart';
 import 'package:ebook_apk/view/liabrary_screen.dart/liabrary_screen.dart';
+import 'package:ebook_apk/view/profile_screen/profile_screen.dart';
 import 'package:ebook_apk/view/search_screen/search_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     HomeScreen(),
     SearchScreen(),
     LiabraryScreen(),
-    // ProfileScreen()
+    ProfileScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -48,10 +49,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                   icon: Icon(Icons.library_books_outlined),
                   label: "LIABRARY",
                 ),
-                // BottomNavigationBarItem(
-                //   icon: Icon(Icons.person),
-                //   label: "PROFILE",
-                // ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: "PROFILE",
+                ),
               ],
               currentIndex: indexNum,
               onTap: (int index) {

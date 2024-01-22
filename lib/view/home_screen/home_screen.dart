@@ -1,5 +1,5 @@
-import 'package:ebook_apk/controller/book_controller.dart';
-import 'package:ebook_apk/controller/category_controller.dart';
+import 'package:ebook_apk/controller/books/book_controller.dart';
+import 'package:ebook_apk/controller/books/category_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_horiz.dart';

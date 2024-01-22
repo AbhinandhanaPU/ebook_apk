@@ -166,9 +166,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print(e);
                           }
                           final user = UserModel(
-                              name: nameController.text,
-                              email: mailSignController.text,
-                              password: passSignController.text);
+                            name: nameController.text,
+                            email: mailSignController.text,
+                          );
                           userController.createNewUser(user, context);
                         }
                       } else {

@@ -27,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = FirebaseAuth.instance;
     final userController = Provider.of<UserManagement>(context);
 
     return Scaffold(
@@ -166,9 +167,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             print(e);
                           }
                           final user = UserModel(
-                            name: nameController.text,
-                            email: mailSignController.text,
-                          );
+                              name: nameController.text,
+                              email: mailSignController.text,
+                              uid: auth.currentUser!.uid);
                           userController.createNewUser(user, context);
                         }
                       } else {

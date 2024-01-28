@@ -3,7 +3,9 @@ import 'package:ebook_apk/controller/books/category_controller.dart';
 import 'package:ebook_apk/controller/services/crud_controller.dart';
 import 'package:ebook_apk/controller/books/search_controller.dart';
 import 'package:ebook_apk/controller/services/users.dart';
+import 'package:ebook_apk/view/bottomnav_screen/bottomnav_screen.dart';
 import 'package:ebook_apk/view/signup_login/signup_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +49,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SignupLoginScreen(),
+        home: FirebaseAuth.instance.currentUser == null
+            ? SignupLoginScreen()
+            : BottomNavScreen(),
       ),
     );
   }

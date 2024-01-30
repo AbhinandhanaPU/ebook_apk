@@ -1,110 +1,55 @@
 import 'dart:convert';
-
 import 'package:ebook_apk/model/bookapi_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class BookCategoryController with ChangeNotifier {
-  Map<String, dynamic> decodedData = {};
-  BookApiModel? apiResModelFantacy;
-  BookApiModel? apiResModelThriller;
-  BookApiModel? apiResModelAdventure;
-  BookApiModel? apiResModelHorror;
-  BookApiModel? apiResModelRom;
+  Map<String, BookApiModel?> categoryData = {};
   bool isLoading = false;
 
-  Future fetchFantacyData() async {
+  Future<void> _fetchData(String category) async {
     isLoading = true;
     notifyListeners();
-    final urlFantacy = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:fantasy&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
-    );
-    final responseFantacy = await http.get(urlFantacy);
-    print(responseFantacy.statusCode);
-    if (responseFantacy.statusCode == 200) {
-      decodedData = jsonDecode(responseFantacy.body);
-      apiResModelFantacy = BookApiModel.fromJson(decodedData);
-    } else {
-      print("api failed");
-    }
-    isLoading = false;
 
+    final url = await Uri.parse(
+      "https://www.googleapis.com/books/v1/volumes?q=subject:$category&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
+    );
+
+    try {
+      final response = await http.get(url);
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        final decodedData = jsonDecode(response.body);
+        categoryData[category] = BookApiModel.fromJson(decodedData);
+      } else {
+        print("API failed for category: $category");
+      }
+    } catch (e) {
+      print("Error fetching data: $e");
+    }
+
+    isLoading = false;
     notifyListeners();
   }
 
-  Future fetchThirillerData() async {
-    isLoading = true;
-    notifyListeners();
-    final urlThiriller = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:thriller&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
-    );
-    final responseThiriller = await http.get(urlThiriller);
-    print(responseThiriller.statusCode);
-    if (responseThiriller.statusCode == 200) {
-      decodedData = jsonDecode(responseThiriller.body);
-      apiResModelThriller = BookApiModel.fromJson(decodedData);
-    } else {
-      print("api failed");
-    }
-    isLoading = false;
-
-    notifyListeners();
+  Future<void> fetchFantasyData() async {
+    await _fetchData("fantasy");
   }
 
-  Future fetchAdventureData() async {
-    isLoading = true;
-    notifyListeners();
-    final urlAdventure = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:adventure&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
-    );
-    final responseAdventure = await http.get(urlAdventure);
-    print(responseAdventure.statusCode);
-    if (responseAdventure.statusCode == 200) {
-      decodedData = jsonDecode(responseAdventure.body);
-      apiResModelAdventure = BookApiModel.fromJson(decodedData);
-    } else {
-      print("api failed");
-    }
-    isLoading = false;
-
-    notifyListeners();
+  Future<void> fetchThrillerData() async {
+    await _fetchData("thriller");
   }
 
-  Future fetchHorrorData() async {
-    isLoading = true;
-    notifyListeners();
-    final urlHorror = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:horror&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
-    );
-    final responseHorror = await http.get(urlHorror);
-    print(responseHorror.statusCode);
-    if (responseHorror.statusCode == 200) {
-      decodedData = jsonDecode(responseHorror.body);
-      apiResModelHorror = BookApiModel.fromJson(decodedData);
-    } else {
-      print("api failed");
-    }
-    isLoading = false;
-
-    notifyListeners();
+  Future<void> fetchAdventureData() async {
+    await _fetchData("adventure");
   }
 
-  Future fetchRomanceData() async {
-    isLoading = true;
-    notifyListeners();
-    final urlRomance = Uri.parse(
-      "https://www.googleapis.com/books/v1/volumes?q=subject:Romance&maxResults=40&download=epub&orderBy=newest&key=AIzaSyAqxw3nnCxwNQXRmXb-ZFi8FTNyhz6kwGA",
-    );
-    final responseRomance = await http.get(urlRomance);
-    print(responseRomance.statusCode);
-    if (responseRomance.statusCode == 200) {
-      decodedData = jsonDecode(responseRomance.body);
-      apiResModelRom = BookApiModel.fromJson(decodedData);
-    } else {
-      print("api failed");
-    }
-    isLoading = false;
+  Future<void> fetchHorrorData() async {
+    await _fetchData("horror");
+  }
 
-    notifyListeners();
+  Future<void> fetchRomanceData() async {
+    await _fetchData("romance");
   }
 }

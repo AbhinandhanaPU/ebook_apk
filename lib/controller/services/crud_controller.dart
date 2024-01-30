@@ -1,10 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CrudController with ChangeNotifier {
-  CollectionReference users = FirebaseFirestore.instance.collection('books');
+  final currentUser = FirebaseAuth.instance;
 
-//  add data
+  // Reference to the Firestore collection
+  CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('users');
+
+// function to add book details as subcollection
   addUser({
     required String title,
     required String image,
@@ -16,23 +21,39 @@ class CrudController with ChangeNotifier {
     required String url,
     required String infoUrl,
   }) async {
-    await users.add({
-      "title": title,
-      "image": image,
-      "author": author,
-      "publisher": publisher,
-      "publisheddate": date,
-      "pageno": pageNo,
-      "desc": desc,
-      "previewurl": url,
-      "infourl": infoUrl,
-    });
+    // Query for the document with the specified uid
+    QuerySnapshot querySnapshot = await usersCollection
+        .where('uid', isEqualTo: currentUser.currentUser!.uid)
+        .get();
+
+    // Check if the document with the specified uid exists
+    if (querySnapshot.docs.isNotEmpty) {
+      // Get the reference to the document
+      DocumentReference userDocument = querySnapshot.docs.first.reference;
+
+      // Adding books a subcollection to the document of first collection
+      await userDocument.collection('books').add({
+        "title": title,
+        "image": image,
+        "author": author,
+        "publisher": publisher,
+        "publisheddate": date,
+        "pageno": pageNo,
+        "desc": desc,
+        "previewurl": url,
+        "infourl": infoUrl,
+      });
+
+      print('Subcollection added successfully!');
+    } else {
+      print('Document with uid Current uid not found.');
+    }
   }
 
 // delete data
   deleteUser({
     required String id,
   }) async {
-    await users.doc(id).delete();
+    await usersCollection.doc(id).delete();
   }
 }

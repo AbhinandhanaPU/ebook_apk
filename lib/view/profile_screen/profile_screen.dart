@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userController = Provider.of<UserManagement>(context);
+    final userController = Provider.of<UserManagement>(context, listen: false);
 
     final TextStyle profileStyle =
         TextStyle(fontSize: 20, fontWeight: FontWeight.w500);

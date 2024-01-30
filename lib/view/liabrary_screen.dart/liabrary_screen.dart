@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ebook_apk/controller/services/crud_controller.dart';
+import 'package:ebook_apk/model/books.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LiabraryScreen extends StatefulWidget {
   const LiabraryScreen({super.key});
@@ -12,10 +15,10 @@ class LiabraryScreen extends StatefulWidget {
 }
 
 class _LiabraryScreenState extends State<LiabraryScreen> {
-  CollectionReference bookCollection =
-      FirebaseFirestore.instance.collection('books');
   @override
   Widget build(BuildContext context) {
+    final crudController = Provider.of<CrudController>(context, listen: false);
+
     return Scaffold(
       body: Column(children: [
         Container(
@@ -63,30 +66,32 @@ class _LiabraryScreenState extends State<LiabraryScreen> {
         ),
         SizedBox(height: 20),
         Expanded(
-          child: StreamBuilder(
-            stream: bookCollection.snapshots(),
+          child: StreamBuilder<List<BooksModel>>(
+            stream: crudController.readBookCollectionStream(),
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text("Error : ${snapshot.error}"));
+              } else if (!snapshot.hasData) {
+                return Center(child: Text("no books Found"));
+              } else {
+                List<BooksModel> booksList = snapshot.data ?? [];
                 return ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
+                  itemCount: booksList.length,
                   itemBuilder: (context, index) {
-                    DocumentSnapshot books = snapshot.data!.docs[index];
                     return BookListVertical(
-                      title: "${books["title"]}",
-                      image: "${books["image"]}",
-                      author: "${books["author"]}",
-                      publisher: "${books["publisher"]}",
-                      date: "${books["publisheddate"]}",
-                      pageNo: books['pageno'],
-                      desc: "${books["desc"]}",
-                      url: "${books["previewurl"]}",
-                      infoUrl: "${books["infourl"]}",
+                      title: booksList[index].title,
+                      image: booksList[index].image,
+                      author: booksList[index].author,
+                      publisher: booksList[index].publisher,
+                      date: booksList[index].publisheddate,
+                      pageNo: booksList[index].pageno,
+                      desc: booksList[index].desc,
+                      url: booksList[index].previewurl,
+                      infoUrl: booksList[index].infourl,
                     );
                   },
-                );
-              } else {
-                return Center(
-                  child: Text("no books Found"),
                 );
               }
             },

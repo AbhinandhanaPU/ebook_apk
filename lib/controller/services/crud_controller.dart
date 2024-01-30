@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ebook_apk/model/books.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +51,6 @@ class CrudController with ChangeNotifier {
     }
   }
 
-// delete data
   Future<void> deleteBookCollection({
     required String title,
   }) async {
@@ -86,5 +86,58 @@ class CrudController with ChangeNotifier {
     } else {
       print('Document with current uid not found.');
     }
+  }
+
+  Future<List<BooksModel>> ReadBookCollection() async {
+    // Query for the document with the specified uid
+    QuerySnapshot querySnapshot = await usersCollection
+        .where('uid', isEqualTo: currentUser.currentUser!.uid)
+        .get();
+    if (querySnapshot.docs.isNotEmpty) {
+      // Get the reference to the document
+      DocumentReference userDocument = querySnapshot.docs.first.reference;
+
+      // Reference to the subcollection
+      CollectionReference subcollectionReference =
+          userDocument.collection("books");
+      // Get documents from the subcollection
+      QuerySnapshot subcollectionQuery = await subcollectionReference.get();
+
+      // Extract data from documents in the subcollection
+      List<BooksModel> booksList = subcollectionQuery.docs
+          .map((DocumentSnapshot document) => document.data() as BooksModel)
+          .toList();
+
+      return booksList;
+    } else {
+      print('Document with current uid not found.');
+      return [];
+    }
+  }
+
+  Stream<List<BooksModel>> readBookCollectionStream() {
+    return usersCollection
+        .where('uid', isEqualTo: currentUser.currentUser!.uid)
+        .snapshots()
+        .asyncMap((querySnapshot) async {
+      if (querySnapshot.docs.isNotEmpty) {
+        // Get the reference to the document
+        DocumentReference userDocument = querySnapshot.docs.first.reference;
+
+        // Reference to the subcollection
+        CollectionReference subcollectionReference =
+            userDocument.collection("books");
+        QuerySnapshot subcollectionQuery = await subcollectionReference.get();
+        List<BooksModel> booksList = subcollectionQuery.docs
+            .map((document) =>
+                BooksModel.fromJson(document.data() as Map<String, dynamic>))
+            .toList();
+        return booksList;
+      } else {
+        // If the document with the current UID is not found, return an empty list
+        print('Document with current uid not found.');
+        return [];
+      }
+    });
   }
 }

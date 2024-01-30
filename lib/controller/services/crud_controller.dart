@@ -10,7 +10,7 @@ class CrudController with ChangeNotifier {
       FirebaseFirestore.instance.collection('users');
 
 // function to add book details as subcollection
-  addUser({
+  Future<void> addBookCollection({
     required String title,
     required String image,
     required String author,
@@ -51,9 +51,40 @@ class CrudController with ChangeNotifier {
   }
 
 // delete data
-  deleteUser({
-    required String id,
+  Future<void> deleteBookCollection({
+    required String title,
   }) async {
-    await usersCollection.doc(id).delete();
+    // Query for the document with the specified uid
+    QuerySnapshot querySnapshot = await usersCollection
+        .where('uid', isEqualTo: currentUser.currentUser!.uid)
+        .get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      // Get the reference to the document
+      DocumentReference userDocument = querySnapshot.docs.first.reference;
+
+      // Reference to the subcollection
+      CollectionReference subcollectionReference =
+          userDocument.collection("books");
+
+      // Query for the document with the specified title in the subcollection
+      QuerySnapshot subcollectionQuery =
+          await subcollectionReference.where('title', isEqualTo: title).get();
+
+      if (subcollectionQuery.docs.isNotEmpty) {
+        // Get the reference to the document in the subcollection
+        DocumentReference documentToDelete =
+            subcollectionQuery.docs.first.reference;
+
+        // Delete the document from the subcollection
+        await documentToDelete.delete();
+
+        print('Document deleted from subcollection successfully!');
+      } else {
+        print('Document with title $title not found in subcollection.');
+      }
+    } else {
+      print('Document with current uid not found.');
+    }
   }
 }

@@ -55,22 +55,24 @@ class _BookDetailsState extends State<BookDetails> {
           IconButton(
               onPressed: () {
                 if (bookmark != true) {
-                  Provider.of<CrudController>(context, listen: false).addUser(
-                      title: widget.title,
-                      image: widget.image,
-                      author: widget.author,
-                      publisher: widget.publisher,
-                      date: widget.date,
-                      pageNo: widget.pageNo,
-                      desc: widget.desc,
-                      url: widget.url,
-                      infoUrl: widget.infoUrl);
+                  Provider.of<CrudController>(context, listen: false)
+                      .addBookCollection(
+                          title: widget.title,
+                          image: widget.image,
+                          author: widget.author,
+                          publisher: widget.publisher,
+                          date: widget.date,
+                          pageNo: widget.pageNo,
+                          desc: widget.desc,
+                          url: widget.url,
+                          infoUrl: widget.infoUrl);
                   bookmark = true;
                   setState(() {});
                 } else {
                   bookmark = false;
                   setState(() {});
-                  // Provider.of<CrudController>(context, listen: false).deleteUser(id: books.id)
+                  Provider.of<CrudController>(context, listen: false)
+                      .deleteBookCollection(title: widget.title);
                 }
               },
               icon: bookmark != false

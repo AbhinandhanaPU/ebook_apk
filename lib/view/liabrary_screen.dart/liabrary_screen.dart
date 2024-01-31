@@ -2,6 +2,7 @@ import 'package:ebook_apk/controller/services/crud_controller.dart';
 import 'package:ebook_apk/model/books.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -47,18 +48,9 @@ class _LiabraryScreenState extends State<LiabraryScreen> {
               children: [
                 Text(
                   "Bookshelf",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: ColorConstant.mainWhite),
+                  style: styleConstant.containerMainText,
                 ),
-                Text(
-                  "",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: ColorConstant.mainWhite),
-                ),
+                Text("", style: styleConstant.containerSubText),
               ],
             ),
           ),

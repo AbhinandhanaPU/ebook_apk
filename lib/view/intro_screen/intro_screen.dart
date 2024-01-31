@@ -1,4 +1,5 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/intro_screen/intro_widget1.dart';
 import 'package:ebook_apk/view/intro_screen/intro_widget2.dart';
 import 'package:ebook_apk/view/intro_screen/intro_widget3.dart';
@@ -46,7 +47,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   },
                   child: Text(
                     indexNo == 2 ? "Done" : "SKIP",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: styleConstant.buttonText,
                   ),
                   style: ButtonStyle(
                       backgroundColor:

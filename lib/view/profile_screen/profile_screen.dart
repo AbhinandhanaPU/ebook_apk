@@ -1,6 +1,7 @@
 import 'package:ebook_apk/controller/services/users.dart';
 import 'package:ebook_apk/model/users.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/profile_screen/option_screen.dart';
 import 'package:ebook_apk/view/signup_login/signup_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,10 +15,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userController = Provider.of<UserManagement>(context, listen: false);
 
-    final TextStyle profileStyle =
-        TextStyle(fontSize: 20, fontWeight: FontWeight.w500);
-    final TextStyle themeStyle =
-        TextStyle(fontSize: 18, color: ColorConstant.mainBlack);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
@@ -45,14 +42,12 @@ class ProfileScreen extends StatelessWidget {
                         SizedBox(height: 20),
                         Text(
                           userData.name,
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                          style: styleConstant.textStyleLS1,
                         ),
                         SizedBox(height: 10),
                         Text(
                           userData.email,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w500),
+                          style: styleConstant.textStyleLS2,
                         ),
                       ],
                     );
@@ -85,7 +80,7 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(width: 30),
                 Text(
                   "Settings",
-                  style: profileStyle,
+                  style: styleConstant.profileStyle,
                 ),
               ],
             ),
@@ -110,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(width: 30),
                   Text(
                     "Preferences",
-                    style: profileStyle,
+                    style: styleConstant.profileStyle,
                   ),
                 ],
               ),
@@ -131,19 +126,19 @@ class ProfileScreen extends StatelessWidget {
                                 onPressed: () {},
                                 child: Text(
                                   "System Default",
-                                  style: themeStyle,
+                                  style: styleConstant.themeStyle,
                                 )),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
                                   "Light",
-                                  style: themeStyle,
+                                  style: styleConstant.themeStyle,
                                 )),
                             TextButton(
                                 onPressed: () {},
                                 child: Text(
                                   "Dark",
-                                  style: themeStyle,
+                                  style: styleConstant.themeStyle,
                                 )),
                           ],
                         )
@@ -162,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(width: 30),
                   Text(
                     "Theme",
-                    style: profileStyle,
+                    style: styleConstant.profileStyle,
                   ),
                 ],
               ),
@@ -223,7 +218,7 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(width: 30),
                   Text(
                     "Logout",
-                    style: profileStyle,
+                    style: styleConstant.profileStyle,
                   ),
                 ],
               ),

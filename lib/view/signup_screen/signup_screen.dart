@@ -1,6 +1,7 @@
 import 'package:ebook_apk/controller/services/users.dart';
 import 'package:ebook_apk/model/users.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/login_screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +21,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passSignController = TextEditingController();
   TextEditingController confirmSignController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  final OutlineInputBorder enabledBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(width: 1.3, color: ColorConstant.iconGrey));
-  final OutlineInputBorder focusedBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(width: 2.5, color: ColorConstant.themeColor));
-  final OutlineInputBorder errorBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(15),
-      borderSide: BorderSide(width: 1.2, color: ColorConstant.red));
 
   @override
   Widget build(BuildContext context) {
@@ -47,21 +39,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 80),
-                  Text(
-                    "Let's get Started!",
-                    style: TextStyle(
-                        color: ColorConstant.themeColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w800),
-                  ),
+                  Text("Let's get Started!", style: styleConstant.textStyleLS1),
                   SizedBox(height: 15),
-                  Text(
-                    "Create An Account To Get All Features",
-                    style: TextStyle(
-                        color: ColorConstant.mainBlack,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  ),
+                  Text("Create An Account To Get All Features",
+                      style: styleConstant.textStyleLS2),
                   SizedBox(height: 40),
                   TextFormField(
                     controller: nameController,
@@ -69,10 +50,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintText: "Name",
                         prefixIcon:
                             Icon(Icons.person, color: ColorConstant.iconGrey),
-                        enabledBorder: enabledBorder,
-                        focusedBorder: focusedBorder,
-                        focusedErrorBorder: errorBorder,
-                        errorBorder: errorBorder),
+                        enabledBorder: styleConstant.enabledBorder,
+                        focusedBorder: styleConstant.focusedBorder,
+                        focusedErrorBorder: styleConstant.errorBorder,
+                        errorBorder: styleConstant.errorBorder),
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Name is required'),
                     ]),
@@ -84,10 +65,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintText: "Email ID",
                       prefixIcon:
                           Icon(Icons.email, color: ColorConstant.iconGrey),
-                      enabledBorder: enabledBorder,
-                      focusedBorder: focusedBorder,
-                      focusedErrorBorder: errorBorder,
-                      errorBorder: errorBorder,
+                      enabledBorder: styleConstant.enabledBorder,
+                      focusedBorder: styleConstant.focusedBorder,
+                      focusedErrorBorder: styleConstant.errorBorder,
+                      errorBorder: styleConstant.errorBorder,
                     ),
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Email ID is required'),
@@ -97,14 +78,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 30),
                   TextFormField(
                     controller: passSignController,
+                    obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Password",
                       prefixIcon:
                           Icon(Icons.lock_open, color: ColorConstant.iconGrey),
-                      enabledBorder: enabledBorder,
-                      focusedBorder: focusedBorder,
-                      focusedErrorBorder: errorBorder,
-                      errorBorder: errorBorder,
+                      enabledBorder: styleConstant.enabledBorder,
+                      focusedBorder: styleConstant.focusedBorder,
+                      focusedErrorBorder: styleConstant.errorBorder,
+                      errorBorder: styleConstant.errorBorder,
                     ),
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Password is required'),
@@ -120,10 +102,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       hintText: "Confirm Password",
                       prefixIcon:
                           Icon(Icons.lock_open, color: ColorConstant.iconGrey),
-                      enabledBorder: enabledBorder,
-                      focusedBorder: focusedBorder,
-                      focusedErrorBorder: errorBorder,
-                      errorBorder: errorBorder,
+                      enabledBorder: styleConstant.enabledBorder,
+                      focusedBorder: styleConstant.focusedBorder,
+                      focusedErrorBorder: styleConstant.errorBorder,
+                      errorBorder: styleConstant.errorBorder,
                     ),
                     validator: (val) {
                       if (val != passSignController.text) {
@@ -161,9 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   SnackBar(
                                     content: Text(
                                       'The given password is invalid. Password should be at least 6 characters',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
+                                      style: styleConstant.textStyleLS3,
                                     ),
                                   ),
                                 );
@@ -174,9 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   SnackBar(
                                     content: Text(
                                         'The account already exists for that email.',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16)),
+                                        style: styleConstant.textStyleLS3),
                                   ),
                                 );
                                 print(
@@ -192,25 +170,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             userController.createNewUser(user, context);
                           }
                         },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(
-                              ColorConstant.themeColor),
-                          elevation: MaterialStatePropertyAll(10),
-                          padding: MaterialStatePropertyAll(
-                              EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 11)),
-                          shape: MaterialStatePropertyAll(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
+                        style: styleConstant.buttonStyle,
                         child: Text(
                           "CREATE",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: ColorConstant.mainWhite),
+                          style: styleConstant.buttonText,
                         )),
                   ),
                   SizedBox(height: 60),
@@ -220,8 +183,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Text(
                         "Already have an account? ",
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w500),
+                        style: styleConstant.textStyleLS3,
                       ),
                       TextButton(
                           onPressed: () {
@@ -233,10 +195,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                           child: Text(
                             " Login Here",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900,
-                                color: ColorConstant.themeColor),
+                            style: styleConstant.textStyleLS4,
                           )),
                     ],
                   )

@@ -1,6 +1,7 @@
 import 'package:ebook_apk/controller/books/search_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,24 +49,17 @@ class _SearchScreenState extends State<SearchScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Discover",
-                  style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: ColorConstant.mainWhite),
-                ),
+                Text("Discover", style: styleConstant.containerMainText),
                 Text(
                   "Search from more than 30 millioin books",
-                  style:
-                      TextStyle(fontSize: 18, color: ColorConstant.mainWhite),
+                  style: styleConstant.containerSubText,
                 ),
               ],
             ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+          padding: EdgeInsets.only(top: 15, left: 10, right: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -74,18 +68,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 cursorColor: ColorConstant.mainBlack,
                 decoration: InputDecoration(
                   hintText: "Book title",
-                  constraints: BoxConstraints(maxWidth: 250, maxHeight: 60),
+                  constraints: BoxConstraints(maxWidth: 245, maxHeight: 55),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide:
-                          BorderSide(width: 2.5, color: ColorConstant.red)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                          width: 2.5, color: ColorConstant.themeColor)),
+                  errorBorder: styleConstant.errorBorder,
+                  focusedBorder: styleConstant.focusedBorder,
                 ),
               ),
               ElevatedButton(
@@ -100,38 +88,16 @@ class _SearchScreenState extends State<SearchScreen> {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
-                          "Type the book name in the search fileld ",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                            "Type the book name in the search fileld ",
+                            style: styleConstant.textStyleLS3),
                         backgroundColor: ColorConstant.themeColor,
                         showCloseIcon: true,
                       ),
                     );
                   }
                 },
-                child: Text(
-                  "SEARCH",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: ColorConstant.mainWhite,
-                  ),
-                ),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(ColorConstant.themeColor),
-                  elevation: MaterialStatePropertyAll(10),
-                  padding: MaterialStatePropertyAll(
-                      EdgeInsets.symmetric(horizontal: 25, vertical: 12)),
-                  shape: MaterialStatePropertyAll(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
+                child: Text("SEARCH", style: styleConstant.buttonText),
+                style: styleConstant.buttonStyle,
               )
             ],
           ),

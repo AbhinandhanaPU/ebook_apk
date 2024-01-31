@@ -1,4 +1,5 @@
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:flutter/material.dart';
 
 class IntroWidget3 extends StatelessWidget {
@@ -15,15 +16,9 @@ class IntroWidget3 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20),
-          Text(
-            """Download your Favorite books ,
+          Text("""Download your Favorite books ,
 you can enjoy your books without any worries""",
-            style: TextStyle(
-              fontSize: 21,
-              fontWeight: FontWeight.w400,
-              // color: ColorConstant.mainBlack,
-            ),
-          ),
+              style: styleConstant.textStyleLS2),
           SizedBox(height: 50),
           Container(
             width: double.infinity,

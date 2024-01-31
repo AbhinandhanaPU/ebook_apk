@@ -1,6 +1,7 @@
 import 'package:ebook_apk/controller/books/book_controller.dart';
 import 'package:ebook_apk/controller/services/crud_controller.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -37,10 +38,6 @@ class _BookDetailsState extends State<BookDetails> {
   bool bookmark = false;
   @override
   Widget build(BuildContext context) {
-    final TextStyle largeTextStyle =
-        TextStyle(fontSize: 18, fontWeight: FontWeight.w800);
-    final TextStyle smallTextStyle =
-        TextStyle(fontSize: 18, fontWeight: FontWeight.w400, height: 1.5);
     return Scaffold(
       extendBody: true,
       appBar: AppBar(
@@ -113,20 +110,19 @@ class _BookDetailsState extends State<BookDetails> {
               SizedBox(height: 20),
               // Title
               Center(
-                child: Text(
-                  widget.title,
-                  // "In publishing and graphic design",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
+                child: Text(widget.title,
+                    // "In publishing and graphic design",
+                    textAlign: TextAlign.center,
+                    style: styleConstant.textStyle),
               ),
               SizedBox(height: 15),
               // Author
               Row(
                 children: [
-                  Text("Authors : ", style: largeTextStyle),
+                  Text("Authors : ", style: styleConstant.largeTextStyle),
                   Expanded(
-                      child: Text("${widget.author}", style: smallTextStyle)),
+                      child: Text("${widget.author}",
+                          style: styleConstant.smallTextStyle)),
                 ],
               ),
               SizedBox(height: 15),
@@ -135,37 +131,38 @@ class _BookDetailsState extends State<BookDetails> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("publisher : ", style: largeTextStyle),
+                  Text("publisher : ", style: styleConstant.largeTextStyle),
                   Expanded(
-                      child:
-                          Text("${widget.publisher}", style: smallTextStyle)),
+                      child: Text("${widget.publisher}",
+                          style: styleConstant.smallTextStyle)),
                 ],
               ),
               SizedBox(height: 15),
               // published date
               Row(
                 children: [
-                  Text("Published date : ", style: largeTextStyle),
-                  Text("${widget.date}", style: smallTextStyle),
+                  Text("Published date : ",
+                      style: styleConstant.largeTextStyle),
+                  Text("${widget.date}", style: styleConstant.smallTextStyle),
                 ],
               ),
               SizedBox(height: 15),
               // No. of pages
               Row(
                 children: [
-                  Text("No. of pages : ", style: largeTextStyle),
-                  Text("${widget.pageNo}", style: smallTextStyle),
+                  Text("No. of pages : ", style: styleConstant.largeTextStyle),
+                  Text("${widget.pageNo}", style: styleConstant.smallTextStyle),
                 ],
               ),
               SizedBox(height: 15),
               // descrption
-              Text("Description", style: largeTextStyle),
+              Text("Description", style: styleConstant.largeTextStyle),
               SizedBox(height: 10),
               Text(
                 widget.desc,
                 // "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking",
                 textAlign: TextAlign.justify,
-                style: smallTextStyle,
+                style: styleConstant.smallTextStyle,
               ),
             ],
           ),
@@ -174,26 +171,12 @@ class _BookDetailsState extends State<BookDetails> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 5),
         child: ElevatedButton(
-          onPressed: () {
-            Provider.of<NewestBookController>(context, listen: false)
-                .openUrl(widget.url);
-          },
-          child: Text(
-            "Preview",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: ColorConstant.mainWhite,
-              letterSpacing: 1.0,
-            ),
-          ),
-          style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(ColorConstant.themeColor),
-            padding:
-                MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
-            // shape: MaterialStatePropertyAll(RoundedRectangleBorder()),
-          ),
-        ),
+            onPressed: () {
+              Provider.of<NewestBookController>(context, listen: false)
+                  .openUrl(widget.url);
+            },
+            child: Text("Preview", style: styleConstant.previewStyle),
+            style: styleConstant.buttonStyle),
       ),
     );
   }

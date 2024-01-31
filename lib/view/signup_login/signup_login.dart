@@ -1,4 +1,5 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/login_screen/login_screen.dart';
 import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +16,12 @@ class SignupLoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              "WELCOME",
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: ColorConstant.themeColor),
-            ),
+            Text("WELCOME", style: styleConstant.textStyleLS1),
             SizedBox(height: 25),
             Text(
-              "Login into your existing account or create a new one to access all the ebooks",
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+                "Login into your existing account or create a new one to access all the ebooks",
+                textAlign: TextAlign.justify,
+                style: styleConstant.textStyleLS2),
             SizedBox(height: 150),
             ElevatedButton(
               onPressed: () {

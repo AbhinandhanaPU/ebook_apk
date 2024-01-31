@@ -1,3 +1,4 @@
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/book_details.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,7 @@ class BookListHoriz extends StatelessWidget {
                 title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: styleConstant.textStyleLS3,
               ),
             ),
           ],

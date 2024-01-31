@@ -1,3 +1,4 @@
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/widgets_reusable/book_details.dart';
 import 'package:flutter/material.dart';
 
@@ -72,8 +73,7 @@ class BookListVertical extends StatelessWidget {
                   child: Text(title,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                      style: styleConstant.largeTextStyle),
                 ),
                 SizedBox(height: 10),
                 Text(

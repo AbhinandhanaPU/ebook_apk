@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   bool iswaiting = true;
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 4)).then((value) {
+    Future.delayed(Duration(seconds: 3)).then((value) {
       iswaiting = false;
       setState(() {});
     });
@@ -26,16 +26,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     if (iswaiting == false) {
-      return StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return BottomNavScreen();
-          } else {
-            return IntroScreen();
-          }
-        },
-      );
+      return FirebaseAuth.instance.currentUser == null
+          ? IntroScreen()
+          : BottomNavScreen();
+      // StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData) {
+      //       return BottomNavScreen();
+      //     } else {
+      //       return IntroScreen();
+      //     }
+      //   },
+      // );
     } else {
       return Scaffold(
         body: Center(

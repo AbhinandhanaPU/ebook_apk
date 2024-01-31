@@ -1,7 +1,7 @@
 import 'package:ebook_apk/controller/books/book_controller.dart';
 import 'package:ebook_apk/controller/books/category_controller.dart';
-import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/home_screen/booklist_horiz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -65,29 +65,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Explore",
-                              style: TextStyle(
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorConstant.mainWhite),
+                              "Explore Books",
+                              style: styleConstant.containerMainText,
                             ),
                             Text(
-                              "Books",
-                              style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorConstant.mainWhite),
+                              "",
+                              style: styleConstant.containerSubText,
                             ),
                           ],
                         ),
                       ),
                     ),
                     SizedBox(height: 10),
-                    Text(
-                      "Latest release",
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
+                    Text("Latest release", style: styleConstant.textStyle),
                     SizedBox(height: 10),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -122,8 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             category.capitalizeFirstLetter(),
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
+                            style: styleConstant.textStyle,
                           ),
                           SizedBox(height: 10),
                           SingleChildScrollView(

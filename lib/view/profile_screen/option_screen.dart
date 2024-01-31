@@ -1,5 +1,5 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
-import 'package:ebook_apk/utils/text_constant/text_constant.dart';
+import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 

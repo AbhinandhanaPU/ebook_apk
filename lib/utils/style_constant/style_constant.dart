@@ -67,8 +67,10 @@ class styleConstant {
       fontWeight: FontWeight.w500);
 
   // login screen & signin screen check title
-  static TextStyle textStyleLS3 =
-      TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
+  static TextStyle textStyleLS3 = TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstant.mainBlack);
 
   // login screen & signin screen -signin/login
   static TextStyle textStyleLS4 = TextStyle(
@@ -95,7 +97,7 @@ class styleConstant {
     padding: MaterialStatePropertyAll(
         EdgeInsets.symmetric(horizontal: 30, vertical: 11)),
     shape: MaterialStatePropertyAll(
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     ),
   );
 }

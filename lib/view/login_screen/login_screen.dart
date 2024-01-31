@@ -1,6 +1,7 @@
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/style_constant/style_constant.dart';
 import 'package:ebook_apk/view/bottomnav_screen/bottomnav_screen.dart';
+import 'package:ebook_apk/view/login_screen/forgot_pw_screen.dart';
 import 'package:ebook_apk/view/signup_screen/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +25,10 @@ class LoginScreen extends StatelessWidget {
             child: Builder(builder: (context) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 80),
-                  Text("Welcome Back!", style: styleConstant.textStyleLS1),
+                  Text("Welcome !", style: styleConstant.textStyleLS1),
                   SizedBox(height: 15),
                   Text("Login Into Your Existing Account",
                       style: styleConstant.textStyleLS2),
@@ -55,13 +56,6 @@ class LoginScreen extends StatelessWidget {
                         hintText: "Password",
                         prefixIcon: Icon(Icons.lock_open,
                             color: ColorConstant.iconGrey),
-                        counter: Text(
-                          "Forgot Password ?",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: ColorConstant.themeColor),
-                        ),
                         enabledBorder: styleConstant.enabledBorder,
                         focusedBorder: styleConstant.focusedBorder,
                         focusedErrorBorder: styleConstant.errorBorder,
@@ -73,51 +67,67 @@ class LoginScreen extends StatelessWidget {
                               'Password must be at least 6 characters long')
                     ]),
                   ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ForgotPwScreen(),
+                              ));
+                        },
+                        child: Text(
+                          "Forgot password?",
+                          style: styleConstant.textStyleLS4,
+                        ),
+                      ),
+                    ],
+                  ),
                   SizedBox(height: 50),
-                  Center(
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          if (Form.of(context).validate()) {
-                            try {
-                              final credential = await FirebaseAuth.instance
-                                  .signInWithEmailAndPassword(
-                                      email: mailLoginController.text,
-                                      password: passLoginController.text);
-                              if (credential.user?.uid != null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text("Login successfull")));
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => BottomNavScreen(),
-                                    ),
-                                    (route) => false);
-                              }
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'user-not-found') {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      "Invalid mail id",
-                                      style: styleConstant.textStyleLS3,
-                                    ),
+                  ElevatedButton(
+                      onPressed: () async {
+                        if (Form.of(context).validate()) {
+                          try {
+                            final credential = await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: mailLoginController.text,
+                                    password: passLoginController.text);
+                            if (credential.user?.uid != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Login successfull")));
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BottomNavScreen(),
                                   ),
-                                );
+                                  (route) => false);
+                            }
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'user-not-found') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    "Invalid mail id",
+                                    style: styleConstant.textStyleLS3,
+                                  ),
+                                ),
+                              );
 
-                                print('No user found for that email.');
-                              } else if (e.code == 'wrong-password') {
-                                print('Wrong password provided for that user.');
-                              }
+                              print('No user found for that email.');
+                            } else if (e.code == 'wrong-password') {
+                              print('Wrong password provided for that user.');
                             }
                           }
-                        },
-                        style: styleConstant.buttonStyle,
-                        child: Text(
-                          "LOGIN",
-                          style: styleConstant.buttonText,
-                        )),
-                  ),
+                        }
+                      },
+                      style: styleConstant.buttonStyle,
+                      child: Text(
+                        "LOGIN",
+                        style: styleConstant.buttonText,
+                      )),
                   SizedBox(height: 170),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

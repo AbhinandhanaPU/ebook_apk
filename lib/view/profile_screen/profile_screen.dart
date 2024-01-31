@@ -44,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                           userData.name,
                           style: styleConstant.textStyleLS1,
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 8),
                         Text(
                           userData.email,
                           style: styleConstant.textStyleLS2,
@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                 }
               },
             ),
-            SizedBox(height: 60),
+            SizedBox(height: 50),
             Row(
               children: [
                 CircleAvatar(
@@ -113,37 +113,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 30),
             InkWell(
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                      actionsAlignment: MainAxisAlignment.start,
-                      actionsPadding: EdgeInsets.all(20),
-                      alignment: Alignment.center,
-                      actions: [
-                        Column(
-                          children: [
-                            TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "System Default",
-                                  style: styleConstant.themeStyle,
-                                )),
-                            TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Light",
-                                  style: styleConstant.themeStyle,
-                                )),
-                            TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Dark",
-                                  style: styleConstant.themeStyle,
-                                )),
-                          ],
-                        )
-                      ]),
-                );
+                themeDialogBox(context);
               },
               child: Row(
                 children: [
@@ -165,46 +135,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 30),
             InkWell(
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(
-                      "Do you want to Log out?",
-                      style: TextStyle(fontSize: 22),
-                    ),
-                    actions: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text(
-                                "Cancel",
-                                style:
-                                    TextStyle(color: ColorConstant.themeColor),
-                              )),
-                          ElevatedButton(
-                              onPressed: () async {
-                                await FirebaseAuth.instance.signOut();
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SignupLoginScreen(),
-                                    ),
-                                    (route) => false);
-                              },
-                              child: Text(
-                                "Logout",
-                                style:
-                                    TextStyle(color: ColorConstant.themeColor),
-                              )),
-                        ],
-                      )
-                    ],
-                  ),
-                );
+                logOutDialogBox(context);
               },
               child: Row(
                 children: [
@@ -225,6 +156,81 @@ class ProfileScreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Future<dynamic> themeDialogBox(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+          actionsAlignment: MainAxisAlignment.start,
+          actionsPadding: EdgeInsets.all(20),
+          alignment: Alignment.center,
+          actions: [
+            Column(
+              children: [
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "System Default",
+                      style: styleConstant.themeStyle,
+                    )),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Light",
+                      style: styleConstant.themeStyle,
+                    )),
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Dark",
+                      style: styleConstant.themeStyle,
+                    )),
+              ],
+            )
+          ]),
+    );
+  }
+
+  Future<dynamic> logOutDialogBox(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          "Do you want to Log out?",
+          style: TextStyle(fontSize: 22),
+        ),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(color: ColorConstant.themeColor),
+                  )),
+              ElevatedButton(
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignupLoginScreen(),
+                        ),
+                        (route) => false);
+                  },
+                  child: Text(
+                    "Logout",
+                    style: TextStyle(color: ColorConstant.themeColor),
+                  )),
+            ],
+          )
+        ],
       ),
     );
   }

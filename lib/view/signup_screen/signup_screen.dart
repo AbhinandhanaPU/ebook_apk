@@ -36,12 +36,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Builder(builder: (context) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 80),
                   Text("Let's get Started!", style: styleConstant.textStyleLS1),
                   SizedBox(height: 15),
-                  Text("Create An Account To Get All Features",
+                  Text("Register below with your details",
                       style: styleConstant.textStyleLS2),
                   SizedBox(height: 40),
                   TextFormField(
@@ -115,67 +115,65 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     },
                   ),
                   SizedBox(height: 50),
-                  Center(
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            try {
-                              final credential = await FirebaseAuth.instance
-                                  .createUserWithEmailAndPassword(
-                                email: mailSignController.text,
-                                password: passSignController.text,
+                  ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          try {
+                            final credential = await FirebaseAuth.instance
+                                .createUserWithEmailAndPassword(
+                              email: mailSignController.text,
+                              password: passSignController.text,
+                            );
+                            if (credential.user?.uid != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text(
+                                          "Account created successfully")));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
                               );
-                              if (credential.user?.uid != null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                            "Account created successfully")));
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginScreen(),
-                                  ),
-                                );
-                              }
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'weak-password') {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'The given password is invalid. Password should be at least 6 characters',
-                                      style: styleConstant.textStyleLS3,
-                                    ),
-                                  ),
-                                );
-                                print(
-                                    'The given password is invalid. Password should be at least 6 characters');
-                              } else if (e.code == 'email-already-in-use') {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                        'The account already exists for that email.',
-                                        style: styleConstant.textStyleLS3),
-                                  ),
-                                );
-                                print(
-                                    'The account already exists for that email.');
-                              }
-                            } catch (e) {
-                              print(e);
                             }
-                            final user = UserModel(
-                                name: nameController.text,
-                                email: mailSignController.text,
-                                uid: auth.currentUser!.uid);
-                            userController.createNewUser(user, context);
+                          } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'The given password is invalid. Password should be at least 6 characters',
+                                    style: styleConstant.textStyleLS3,
+                                  ),
+                                ),
+                              );
+                              print(
+                                  'The given password is invalid. Password should be at least 6 characters');
+                            } else if (e.code == 'email-already-in-use') {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'The account already exists for that email.',
+                                      style: styleConstant.textStyleLS3),
+                                ),
+                              );
+                              print(
+                                  'The account already exists for that email.');
+                            }
+                          } catch (e) {
+                            print(e);
                           }
-                        },
-                        style: styleConstant.buttonStyle,
-                        child: Text(
-                          "CREATE",
-                          style: styleConstant.buttonText,
-                        )),
-                  ),
+                          final user = UserModel(
+                              name: nameController.text,
+                              email: mailSignController.text,
+                              uid: auth.currentUser!.uid);
+                          userController.createNewUser(user, context);
+                        }
+                      },
+                      style: styleConstant.buttonStyle,
+                      child: Text(
+                        "Sign Up",
+                        style: styleConstant.buttonText,
+                      )),
                   SizedBox(height: 60),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

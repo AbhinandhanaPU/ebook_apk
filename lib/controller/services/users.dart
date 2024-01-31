@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class UserManagement with ChangeNotifier {
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
-  final currentUser = FirebaseAuth.instance;
+  final authRef = FirebaseAuth.instance;
 
   createNewUser(UserModel user, context) async {
     try {
@@ -24,9 +24,34 @@ class UserManagement with ChangeNotifier {
 
   Future<UserModel> getUserDetails() async {
     final snapshot = await userCollection
-        .where("uid", isEqualTo: currentUser.currentUser!.uid)
+        .where("uid", isEqualTo: authRef.currentUser!.uid)
         .get();
     final userData = snapshot.docs.map((e) => UserModel.fromJson(e)).single;
     return userData;
+  }
+
+  Future passwordReset(
+      {required BuildContext context, required String mail}) async {
+    try {
+      await authRef.sendPasswordResetEmail(email: mail);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text("Paswword reset link sent! Check your email"),
+          );
+        },
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(e.message.toString()),
+          );
+        },
+      );
+    }
   }
 }

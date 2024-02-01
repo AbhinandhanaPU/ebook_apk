@@ -30,6 +30,7 @@ class BookListHoriz extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 15, bottom: 30),
       child: InkWell(
+        // Navigate to BookDetails screen when the item is tapped
         onTap: () {
           Navigator.push(
             context,
@@ -51,6 +52,7 @@ class BookListHoriz extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Book cover image
             Container(
               width: 120,
               height: 160,
@@ -62,6 +64,7 @@ class BookListHoriz extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
+            // Book title text
             SizedBox(
               width: 95,
               child: Text(

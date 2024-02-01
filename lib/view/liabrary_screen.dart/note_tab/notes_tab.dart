@@ -20,3 +20,33 @@ class NotesTab extends StatelessWidget {
     );
   }
 }
+  //  DefaultTabController(
+    //   length: 3,
+    //   initialIndex: 0,
+    //   child: Scaffold(
+    //     appBar: AppBar(
+    //       title: Text("Your Liabrary"),
+    //       backgroundColor: ColorConstant.mainWhite,
+    //       foregroundColor: ColorConstant.themeColor,
+    //       elevation: 3,
+    //       bottom: TabBar(
+    //         tabs: [
+    //           Tab(text: "My Readings"),
+    //           Tab(text: "My Bookshelf"),
+    //           Tab(text: "Notes")
+    //         ],
+    //         indicatorSize: TabBarIndicatorSize.tab,
+    //         indicatorWeight: 4,
+    //         labelStyle: TextStyle(
+    //             fontSize: 16,
+    //             fontWeight: FontWeight.w500,
+    //             color: ColorConstant.themeColor),
+    //       ),
+    //     ),
+    //     body: TabBarView(children: [
+    //       // SingleChildScrollView(child: BookListVertical()),
+    //       ShelfScreen(),
+    //       NotesTab()
+    //     ]),
+    //   ),
+    // );

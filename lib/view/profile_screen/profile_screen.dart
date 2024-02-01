@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,215 +22,211 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FutureBuilder(
-              future: userController.getUserDetails(),
-              builder: (context, snapshot) {
-                UserModel userData = snapshot.data as UserModel;
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasData) {
-                    return Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: ColorConstant.themeColor,
-                          foregroundColor: ColorConstant.mainWhite,
-                          radius: 65,
-                          child: Text(
-                            "U",
-                            style: TextStyle(fontSize: 50),
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Text(
-                          userData.name,
-                          style: styleConstant.textStyleLS1,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          userData.email,
-                          style: styleConstant.textStyleLS2,
-                        ),
-                      ],
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text(snapshot.error.toString()),
-                    );
-                  } else {
-                    return Center(
-                      child: Text("something went wrong"),
-                    );
-                  }
-                } else {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
+            // Display user information
+            _buildUserProfile(usercontroller: userController),
+
             SizedBox(height: 50),
-            Row(
-              children: [
-                CircleAvatar(
-                    radius: 24,
-                    child: Icon(
-                      Icons.settings,
-                      size: 22,
-                      color: ColorConstant.themeColor,
-                    )),
-                SizedBox(width: 30),
-                Text(
-                  "Settings",
-                  style: styleConstant.profileStyle,
-                ),
-              ],
+
+            // Settings, Preferences, Theme, and Logout options
+            _buildMenuOption(
+              icon: Icons.settings,
+              label: "Settings",
             ),
             SizedBox(height: 30),
-            InkWell(
+            _buildMenuOption(
+              icon: Icons.tune,
+              label: "Preferences",
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => OptionScreen(),
-                    ));
-              },
-              child: Row(
-                children: [
-                  CircleAvatar(
-                      radius: 24,
-                      child: Icon(
-                        Icons.tune,
-                        size: 22,
-                        color: ColorConstant.themeColor,
-                      )),
-                  SizedBox(width: 30),
-                  Text(
-                    "Preferences",
-                    style: styleConstant.profileStyle,
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OptionScreen(),
                   ),
-                ],
-              ),
+                );
+              },
             ),
             SizedBox(height: 30),
-            InkWell(
+            _buildMenuOption(
+              icon: Icons.contrast,
+              label: "Theme",
               onTap: () {
-                themeDialogBox(context);
+                _showThemeDialogBox(context);
               },
-              child: Row(
-                children: [
-                  CircleAvatar(
-                      radius: 24,
-                      child: Icon(
-                        Icons.contrast,
-                        size: 22,
-                        color: ColorConstant.themeColor,
-                      )),
-                  SizedBox(width: 30),
-                  Text(
-                    "Theme",
-                    style: styleConstant.profileStyle,
-                  ),
-                ],
-              ),
             ),
             SizedBox(height: 30),
-            InkWell(
+            _buildMenuOption(
+              icon: Icons.logout,
+              label: "Logout",
               onTap: () {
-                logOutDialogBox(context);
+                _showLogoutDialogBox(context);
               },
-              child: Row(
-                children: [
-                  CircleAvatar(
-                      radius: 24,
-                      child: Icon(
-                        Icons.logout,
-                        size: 22,
-                        color: ColorConstant.themeColor,
-                      )),
-                  SizedBox(width: 30),
-                  Text(
-                    "Logout",
-                    style: styleConstant.profileStyle,
-                  ),
-                ],
-              ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Future<dynamic> themeDialogBox(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-          actionsAlignment: MainAxisAlignment.start,
-          actionsPadding: EdgeInsets.all(20),
-          alignment: Alignment.center,
-          actions: [
-            Column(
+  // Widget to display user information
+  Widget _buildUserProfile({usercontroller}) {
+    return FutureBuilder(
+      future: usercontroller.getUserDetails(),
+      builder: (context, snapshot) {
+        UserModel userData = snapshot.data as UserModel;
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.hasData) {
+            return Column(
               children: [
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "System Default",
-                      style: styleConstant.themeStyle,
-                    )),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Light",
-                      style: styleConstant.themeStyle,
-                    )),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Dark",
-                      style: styleConstant.themeStyle,
-                    )),
+                CircleAvatar(
+                  backgroundColor: ColorConstant.themeColor,
+                  foregroundColor: ColorConstant.mainWhite,
+                  radius: 65,
+                  child: Text(
+                    "U",
+                    style: TextStyle(fontSize: 50),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  userData.name,
+                  style: styleConstant.textStyleLS1,
+                ),
+                SizedBox(height: 8),
+                Text(
+                  userData.email,
+                  style: styleConstant.textStyleLS2,
+                ),
               ],
-            )
-          ]),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          } else {
+            return Center(
+              child: Text("Something went wrong"),
+            );
+          }
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      },
     );
   }
 
-  Future<dynamic> logOutDialogBox(BuildContext context) {
+  // Widget to build each menu option
+  Widget _buildMenuOption({
+    required IconData icon,
+    required String label,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            child: Icon(
+              icon,
+              size: 22,
+              color: ColorConstant.themeColor,
+            ),
+          ),
+          SizedBox(width: 30),
+          Text(
+            label,
+            style: styleConstant.profileStyle,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Dialog box to change the theme
+  Future<void> _showThemeDialogBox(BuildContext context) async {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        actionsAlignment: MainAxisAlignment.start,
+        actionsPadding: EdgeInsets.all(20),
+        alignment: Alignment.center,
+        actions: [
+          Column(
+            children: [
+              _buildThemeButton("System Default"),
+              _buildThemeButton("Light"),
+              _buildThemeButton("Dark"),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  // Helper method to build a theme button
+  Widget _buildThemeButton(String theme) {
+    return TextButton(
+      onPressed: () {
+        // TODO: Implement theme change logic
+      },
+      child: Text(
+        theme,
+        style: styleConstant.themeStyle,
+      ),
+    );
+  }
+
+  // Dialog box to confirm logout
+  Future<void> _showLogoutDialogBox(BuildContext context) async {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          "Do you want to Log out?",
+          "Do you want to log out?",
           style: TextStyle(fontSize: 22),
         ),
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "Cancel",
-                    style: TextStyle(color: ColorConstant.themeColor),
-                  )),
-              ElevatedButton(
-                  onPressed: () async {
-                    await FirebaseAuth.instance.signOut();
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignupLoginScreen(),
-                        ),
-                        (route) => false);
-                  },
-                  child: Text(
-                    "Logout",
-                    style: TextStyle(color: ColorConstant.themeColor),
-                  )),
+              _buildDialogButton(
+                text: "Cancel",
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              _buildDialogButton(
+                text: "Logout",
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignupLoginScreen(),
+                    ),
+                    (route) => false,
+                  );
+                },
+              ),
             ],
           )
         ],
+      ),
+    );
+  }
+
+  // Helper method to build dialog buttons
+  Widget _buildDialogButton({
+    required String text,
+    required VoidCallback onPressed,
+  }) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        text,
+        style: TextStyle(color: ColorConstant.themeColor),
       ),
     );
   }

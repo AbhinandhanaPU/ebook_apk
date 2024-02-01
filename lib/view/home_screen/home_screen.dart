@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  // Fetch data for newest books and various book categories
   Future<void> getData() async {
     final newestController =
         Provider.of<NewestBookController>(context, listen: false);
@@ -36,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Access controllers to get data
     final newestController = Provider.of<NewestBookController>(context);
     final categoryController = Provider.of<BookCategoryController>(context);
 
@@ -48,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Header container
                     Container(
                       width: double.infinity,
                       height: 230,
@@ -83,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
+                          // Display horizontal list of newest books
                           for (var item
                               in newestController.apiResModel?.items ?? [])
                             BookListHoriz(
@@ -106,6 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
+                    // Display books for each category
                     for (var category in categoryController.categoryData.keys)
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                               children: [
+                                // Display horizontal list of books for each category
                                 for (var item in categoryController
                                         .categoryData[category]!.items ??
                                     [])
@@ -157,6 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+// Extension to capitalize the first letter of a string
 extension StringExtension on String {
   String capitalizeFirstLetter() {
     return "${this[0].toUpperCase()}${this.substring(1)}";

@@ -43,15 +43,18 @@ class _BookDetailsState extends State<BookDetails> {
       appBar: AppBar(
         foregroundColor: ColorConstant.themeColor,
         actions: [
+          // Share button
           IconButton(
               onPressed: () {
                 Share.share(
                     "Check out this Book: \n ${widget.title} \n \n${widget.infoUrl}");
               },
               icon: Icon(Icons.share)),
+          // Bookmark button
           IconButton(
               onPressed: () {
                 if (bookmark != true) {
+                  // Add to bookmark
                   Provider.of<CrudController>(context, listen: false)
                       .addBookCollection(
                           title: widget.title,
@@ -66,6 +69,7 @@ class _BookDetailsState extends State<BookDetails> {
                   bookmark = true;
                   setState(() {});
                 } else {
+                  // remove from bookmark
                   bookmark = false;
                   setState(() {});
                   Provider.of<CrudController>(context, listen: false)

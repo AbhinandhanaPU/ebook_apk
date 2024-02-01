@@ -38,10 +38,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 80),
+                  SizedBox(height: 60),
                   Text("Let's get Started!", style: styleConstant.textStyleLS1),
                   SizedBox(height: 15),
-                  Text("Register below with your details",
+                  Text("Create your profile to start your Journey",
+                      textAlign: TextAlign.center,
                       style: styleConstant.textStyleLS2),
                   SizedBox(height: 40),
                   TextFormField(

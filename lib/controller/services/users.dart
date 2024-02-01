@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ebook_apk/model/users.dart';
+import 'package:ebook_apk/view/login_screen/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,11 @@ class UserManagement with ChangeNotifier {
             content: Text("Paswword reset link sent! Check your email"),
           );
         },
-      );
+      ).then((value) => Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          )));
     } on FirebaseAuthException catch (e) {
       print(e);
       showDialog(

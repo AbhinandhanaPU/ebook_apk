@@ -23,6 +23,7 @@ class SignupLoginScreen extends StatelessWidget {
                 textAlign: TextAlign.justify,
                 style: styleConstant.textStyleLS2),
             SizedBox(height: 150),
+            //  Login Button
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -46,6 +47,7 @@ class SignupLoginScreen extends StatelessWidget {
                       MaterialStatePropertyAll(ColorConstant.themeColor)),
             ),
             SizedBox(height: 50),
+            //  Sign Up Button
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

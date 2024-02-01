@@ -27,6 +27,7 @@ class BookListVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      // Navigate to the BookDetails screen when tapped
       onTap: () {
         Navigator.push(
             context,
@@ -52,6 +53,7 @@ class BookListVertical extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Book cover image container
             Container(
               width: 110,
               height: 150,
@@ -67,7 +69,7 @@ class BookListVertical extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // SizedBox(height: 10),
+                // Book title
                 SizedBox(
                   width: 205,
                   child: Text(title,
@@ -76,6 +78,7 @@ class BookListVertical extends StatelessWidget {
                       style: styleConstant.largeTextStyle),
                 ),
                 SizedBox(height: 10),
+                // Author name
                 Text(
                   author,
                   style: TextStyle(fontSize: 17),

@@ -7,118 +7,104 @@ import 'package:ebook_apk/view/widgets_reusable/booklist_vertical.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LiabraryScreen extends StatefulWidget {
-  const LiabraryScreen({super.key});
+class LibraryScreen extends StatelessWidget {
+  const LibraryScreen({super.key});
 
-  @override
-  State<LiabraryScreen> createState() => _LiabraryScreenState();
-}
-
-class _LiabraryScreenState extends State<LiabraryScreen> {
   @override
   Widget build(BuildContext context) {
-    final crudController = Provider.of<CrudController>(context, listen: false);
-
     return Scaffold(
-      body: Column(children: [
-        Container(
-          width: double.infinity,
-          height: 250,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
-            gradient: LinearGradient(
-              colors: [
-                ColorConstant.mainBlack,
-                ColorConstant.redBlack,
-                ColorConstant.mainBlack
-              ],
-              begin: Alignment.bottomLeft,
-            ),
-            image: DecorationImage(
-              image: AssetImage(ImageConstant.bookStore),
-              fit: BoxFit.fill,
-              opacity: 0.7,
-            ),
+      body: Column(
+        children: [
+          // Header section with a decorative background and text
+          _buildHeader(),
+
+          SizedBox(height: 20),
+
+          // displays library bookmark list
+          Expanded(
+            child: _buildLibraryList(),
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, top: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Bookshelf",
-                  style: styleConstant.containerMainText,
-                ),
-                Text("", style: styleConstant.containerSubText),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-        Expanded(
-          child: StreamBuilder<List<BooksModel>>(
-            stream: crudController.readBookCollectionStream(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Center(child: Text("Error : ${snapshot.error}"));
-              } else if (!snapshot.hasData) {
-                return Center(child: Text("no books Found"));
-              } else {
-                List<BooksModel> booksList = snapshot.data ?? [];
-                return ListView.builder(
-                  itemCount: booksList.length,
-                  itemBuilder: (context, index) {
-                    return BookListVertical(
-                      title: booksList[index].title,
-                      image: booksList[index].image,
-                      author: booksList[index].author,
-                      publisher: booksList[index].publisher,
-                      date: booksList[index].publisheddate,
-                      pageNo: booksList[index].pageno,
-                      desc: booksList[index].desc,
-                      url: booksList[index].previewurl,
-                      infoUrl: booksList[index].infourl,
-                    );
-                  },
-                );
-              }
-            },
-          ),
-        )
-      ]),
+        ],
+      ),
     );
-    //  DefaultTabController(
-    //   length: 3,
-    //   initialIndex: 0,
-    //   child: Scaffold(
-    //     appBar: AppBar(
-    //       title: Text("Your Liabrary"),
-    //       backgroundColor: ColorConstant.mainWhite,
-    //       foregroundColor: ColorConstant.themeColor,
-    //       elevation: 3,
-    //       bottom: TabBar(
-    //         tabs: [
-    //           Tab(text: "My Readings"),
-    //           Tab(text: "My Bookshelf"),
-    //           Tab(text: "Notes")
-    //         ],
-    //         indicatorSize: TabBarIndicatorSize.tab,
-    //         indicatorWeight: 4,
-    //         labelStyle: TextStyle(
-    //             fontSize: 16,
-    //             fontWeight: FontWeight.w500,
-    //             color: ColorConstant.themeColor),
-    //       ),
-    //     ),
-    //     body: TabBarView(children: [
-    //       // SingleChildScrollView(child: BookListVertical()),
-    //       ShelfScreen(),
-    //       NotesTab()
-    //     ]),
-    //   ),
-    // );
+  }
+
+  // Widget to display header container
+  Widget _buildHeader() {
+    return Container(
+      width: double.infinity,
+      height: 250,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+        gradient: LinearGradient(
+          colors: [
+            ColorConstant.mainBlack,
+            ColorConstant.redBlack,
+            ColorConstant.mainBlack
+          ],
+          begin: Alignment.bottomLeft,
+        ),
+        image: DecorationImage(
+          image: AssetImage(ImageConstant.bookStore),
+          fit: BoxFit.fill,
+          opacity: 0.7,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, top: 30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Bookshelf",
+              style: styleConstant.containerMainText,
+            ),
+            Text(
+              "All your saved books are here",
+              style: styleConstant.containerSubText,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Widget to display Library List
+  Widget _buildLibraryList() {
+    return Consumer<CrudController>(
+      builder: (context, crudController, child) {
+        return StreamBuilder<List<BooksModel>>(
+          stream: crudController.readBookCollectionStream(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text("Error : ${snapshot.error}"));
+            } else if (!snapshot.hasData) {
+              return Center(child: Text("No books found"));
+            } else {
+              List<BooksModel> booksList = snapshot.data ?? [];
+              return ListView.builder(
+                itemCount: booksList.length,
+                itemBuilder: (context, index) {
+                  return BookListVertical(
+                    title: booksList[index].title,
+                    image: booksList[index].image,
+                    author: booksList[index].author,
+                    publisher: booksList[index].publisher,
+                    date: booksList[index].publisheddate,
+                    pageNo: booksList[index].pageno,
+                    desc: booksList[index].desc,
+                    url: booksList[index].previewurl,
+                    infoUrl: booksList[index].infourl,
+                  );
+                },
+              );
+            }
+          },
+        );
+      },
+    );
   }
 }

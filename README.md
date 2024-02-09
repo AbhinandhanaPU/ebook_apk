@@ -22,10 +22,12 @@
 6. Save your favorite books by clicking the "bookmark" icon.
 7. Customize app settings as desired.
 
-## Technologies Used
+## Tech Stack
 
-- [Flutter](https://flutter.dev/) Front-end framework for building cross-platform applications.
-- [Google Books API](https://developers.google.com/books) Provides access to a vast collection of book data.
+- Flutter: a powerful and flexible framework for building beautiful and performant user interfaces across multiple platforms.
+- Dart: the programming language used in combination with Flutter to create the logic and functionality of the Notes App.
+- Google Books API: Provides access to a vast collection of book data.
+- Git: version control system for tracking changes and collaborating with others.
 
 ---
 

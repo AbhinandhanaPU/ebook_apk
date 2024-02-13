@@ -2,7 +2,7 @@ import 'package:ebook_apk/controller/books/book_controller.dart';
 import 'package:ebook_apk/controller/books/category_controller.dart';
 import 'package:ebook_apk/utils/image_constant/image_constant.dart';
 import 'package:ebook_apk/utils/style_constant/style_constant.dart';
-import 'package:ebook_apk/view/home_screen/booklist_horiz.dart';
+import 'package:ebook_apk/view/widgets_reusable/booklist_horiz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

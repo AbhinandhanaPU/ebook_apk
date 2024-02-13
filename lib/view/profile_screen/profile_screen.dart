@@ -2,7 +2,6 @@ import 'package:ebook_apk/controller/services/users.dart';
 import 'package:ebook_apk/model/users.dart';
 import 'package:ebook_apk/utils/color_constant/color_constant.dart';
 import 'package:ebook_apk/utils/style_constant/style_constant.dart';
-import 'package:ebook_apk/view/profile_screen/option_screen.dart';
 import 'package:ebook_apk/view/signup_login/signup_login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Display user information
-            _buildUserProfile(usercontroller: userController),
+            _buildUserProfile(usercontroller: userController.getUserDetails()),
 
             SizedBox(height: 50),
 
@@ -31,19 +30,6 @@ class ProfileScreen extends StatelessWidget {
             _buildMenuOption(
               icon: Icons.settings,
               label: "Settings",
-            ),
-            SizedBox(height: 30),
-            _buildMenuOption(
-              icon: Icons.tune,
-              label: "Preferences",
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OptionScreen(),
-                  ),
-                );
-              },
             ),
             SizedBox(height: 30),
             _buildMenuOption(
@@ -68,11 +54,12 @@ class ProfileScreen extends StatelessWidget {
   }
 
   // Widget to display user information
-  Widget _buildUserProfile({usercontroller}) {
+  Widget _buildUserProfile({required Future usercontroller}) {
     return FutureBuilder(
-      future: usercontroller.getUserDetails(),
+      future: usercontroller,
       builder: (context, snapshot) {
         UserModel userData = snapshot.data as UserModel;
+        List<String> splitName = userData.name.split("");
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData) {
             return Column(
@@ -82,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                   foregroundColor: ColorConstant.mainWhite,
                   radius: 65,
                   child: Text(
-                    "U",
+                    splitName[0].toString().toUpperCase(),
                     style: TextStyle(fontSize: 50),
                   ),
                 ),
